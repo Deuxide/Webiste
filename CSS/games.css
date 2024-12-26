@@ -1,0 +1,158 @@
+
+#games {
+
+    font-size: 100px;
+    font-weight: 400;
+    text-transform: uppercase;
+
+    margin-top: 125px;
+    margin-bottom: 0px;
+    text-align: center;
+
+}
+
+#games p {
+
+    font-size: 15px;
+    font-weight: 500;
+    margin-top: 0px;
+
+}
+
+.gamescard {
+
+    background-color: var(--colors);
+    margin-bottom: 100px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    border-radius: 30px;
+    box-shadow: 6px 6px 6px rgba(0, 0, 0, 0.1), -6px -6px 6px rgba(206, 217, 235, 0.01);
+
+    min-height: 400px;
+    min-width: 300px;
+
+    position: relative;
+    transition: 0.5s;
+
+}
+
+#gamescard {
+
+    gap: 75px;
+
+}
+
+@property --angle{
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+.gamescard::after, .gamescard::before{
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-image: conic-gradient(from var(--angle), var(--colorp),  var(--colora), var(--colora), var(--colorp));
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    z-index: -1;
+    padding: 5px;
+    border-radius: 33px;
+    animation: 4s sin linear infinite;
+}
+.gamescard::before{
+    filter: blur(1.0rem);
+    opacity: 25%;
+}
+
+#a::after, #a::before{
+    animation: 6s sin linear infinite;
+}
+
+#c::after, #c::before{
+    animation: 5s sin linear infinite;
+}
+
+@keyframes sin {
+    from{
+        --angle: 0deg;
+    } to {
+        --angle: 360deg;
+    }
+}
+
+.gamescard:hover {
+
+    padding: 10px;
+
+}
+
+.gamescard h1 {
+
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+
+}
+
+.gamescard p {
+
+    text-align: center;
+    margin: 0;
+    font-weight: 500;
+    opacity: 0.3;
+
+}
+
+.gamescard a {
+
+    margin-top: 20px;
+    color: var(--colors);
+    text-decoration: none;
+    text-transform: uppercase;
+    background: linear-gradient(45deg, var(--colora), #7877C5, var(--colorp));
+    background-size: 300% 100%;
+    padding: 10px;
+    border-radius: 10px;
+    animation: moveGradient 10s linear infinite alternate;
+    transition: 0.4s;
+
+}
+
+@keyframes moveGradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+.gamescard a:hover {
+
+    padding: 15px;
+    cursor: pointer;
+
+}
+
+.gamescard img {
+
+    width: 250px;
+    margin-top: 25px;
+    border-radius: 20px;
+    margin-bottom: 5px;
+
+}
+
+#c h1 {
+
+    margin-top: 180px;
+    transform: rotate(-55deg);
+    font-weight: 700;
+    filter: blur(1px);
+
+}

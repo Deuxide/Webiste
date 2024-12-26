@@ -1,0 +1,123 @@
+
+
+html {
+    font-size: 18px;
+    font-weight: 100;
+}
+
+nav {
+    height: 75px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    text-transform: uppercase;
+    z-index: 1000;
+    position: relative;
+}
+
+.checo-container {
+    background-color: rgb(0, 0, 0, 0.25);
+    height: 75px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: fixed;
+}
+nav a {
+    height: 100%;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--colorp);
+    font-weight: 400;
+    transition: 200ms ease-out;
+}
+
+nav a:hover{
+    background-color: var(--colora);
+    color: var(--colors);
+    font-weight: 600;
+}
+
+nav .home-link {
+    font-weight: 600;
+    margin-right: auto;
+    margin-left: 100px;
+}
+
+#login {
+    margin-right: 100px;
+}
+
+nav svg {
+    fill: var(--colorp);
+}
+
+#senna-active {
+    display: none;
+}
+
+.open-sidebar, .close-sidebar {
+    display: none;
+}
+
+@media(max-width: 700px) {
+    nav .home-link {
+        margin-left: 0;
+    }
+    #login {
+        margin-right: 0;
+    }
+}
+
+@media(max-width: 550px) {
+    .checo-container {
+        flex-direction: column;
+        align-items: flex-start;
+
+        position: fixed;
+        top: 0;
+        right: -100%;
+        z-index: 10;
+        width: 300px;
+
+        background-color: var(--colors);
+        box-shadow: -5px 0 5px rgba(0,0,0,0.25);
+        transition: 750ms ease-out;
+    }
+
+    nav a{
+        background-color: var(--colors);
+        box-shadow: -5px 0 5px rgba(0,0,0,0.25);
+        box-sizing: border-box;
+        height: auto;
+        width: 100%;
+        padding: 20px 30px;
+        justify-content: flex-start;
+    }
+
+    nav .home-link {
+        margin-left: 0;
+    }
+
+    .open-sidebar, .close-sidebar {
+        padding: 20px;
+        display: block;
+    }
+    #senna-active:checked ~ .checo-container{
+        right: 0;
+    }
+    #senna-active:checked ~ #overlay {
+        background: transparent;
+        backdrop-filter: blur(20px);
+        transition: 150ms ease-out;
+        height: 100%;
+        width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 9;
+    }
+}
