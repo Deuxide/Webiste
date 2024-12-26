@@ -47,7 +47,7 @@ body {
 
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     gap: 50px;
@@ -109,15 +109,16 @@ body {
     }
 }
 
-#name {
+@media(Min-width: 911px) {
+    #name {
 
-    margin-top: 12px;
-    height: 155px;
-    font-size: 155px;
-    font-weight: 400;
+        margin-top: 12px;
+        height: 155px;
+        font-size: 155px;
+        font-weight: 400;
 
+    }
 }
-
 
 #desc {
 

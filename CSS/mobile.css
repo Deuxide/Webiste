@@ -8,6 +8,7 @@
         justify-content: center;
         min-height: 400px;
         text-align: center;
+        gap: 1px;
 
     }
 
@@ -25,6 +26,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        gap: 0px;
 
     }
 
@@ -35,25 +37,43 @@
 
     }
 
+    #name {
+
+        font-size: 155px;
+        font-weight: 400;
+
+    }
+
+
+
 }
 
-@Media(max-width: 660px) {
+@Media(Max-width: 660px) {
+
+    .gamescard {
+
+        margin-bottom: 0px !important;
+
+    }
 
     #PCR {
 
-        width: 400px;
+        width: 375px;
 
     }
 
     #PP {
 
         margin-top: 30px;
+        margin-bottom: 0;
 
     }
 
     #name {
 
+        margin-top: 12px;
         font-size: 100px;
+        font-weight: 400;
 
     }
 
