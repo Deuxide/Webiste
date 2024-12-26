@@ -1,0 +1,60 @@
+@media(max-width: 911px) {
+
+    .thing {
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 400px;
+        text-align: center;
+
+    }
+
+    .P-Container {
+
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    #PCR {
+
+        width: 600px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    #PP {
+
+        margin-top: 80px;
+        border-radius: 30px;
+
+    }
+
+}
+
+@Media(max-width: 660px) {
+
+    #PCR {
+
+        width: 400px;
+
+    }
+
+    #PP {
+
+        margin-top: 30px;
+
+    }
+
+    #name {
+
+        font-size: 100px;
+
+    }
+
+}

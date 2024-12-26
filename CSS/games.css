@@ -135,6 +135,7 @@
 .gamescard a:hover {
 
     padding: 15px;
+    border-radius: 15px;
     cursor: pointer;
 
 }
