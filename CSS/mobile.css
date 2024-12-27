@@ -50,7 +50,7 @@
 
 @Media(Max-width: 660px) {
 
-    .gamescard {
+    .gamescard-wrapper {
 
         margin-bottom: 0px !important;
 
