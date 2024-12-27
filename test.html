@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Input Text</title>
+    <style>
+        #textList {
+            margin-top: 20px;
+        }
+        .textItem {
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #f4f4f4;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Enter Text</h2>
+    <textarea id="textInput" rows="4" cols="50" placeholder="Type something here..."></textarea><br>
+    <button id="addTextBtn">Add Text</button>
+
+    <div id="textList">
+        <!-- Dynamic text will appear here -->
+    </div>
+
+    <script>
+        // Function to handle adding text to the display area
+        document.getElementById('addTextBtn').addEventListener('click', function() {
+            const text = document.getElementById('textInput').value; // Get input text
+            if (text.trim()) { // If text is not empty or just spaces
+                const textList = document.getElementById('textList');
+                
+                // Create a new div to hold the input text
+                const newTextDiv = document.createElement('div');
+                newTextDiv.classList.add('textItem');
+                newTextDiv.textContent = text; // Set the text content
+
+                // Append the new text item to the text list
+                textList.appendChild(newTextDiv);
+
+                // Clear the input after adding the text
+                document.getElementById('textInput').value = '';
+            }
+        });
+    </script>
+
+</body>
+</html>
