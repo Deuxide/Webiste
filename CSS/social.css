@@ -1,0 +1,80 @@
+#socials {
+
+    font-size: 100px;
+    font-weight: 400;
+    text-transform: uppercase;
+
+    margin-top: 100px;
+    margin-bottom: 0px;
+    text-align: center;
+
+}
+
+
+.socialcard {
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+
+    padding: 2rem;
+    max-width: 900px;
+    min-height: 275px;
+    background-color: var(--colors);
+    box-shadow: 6px 6px 6px rgba(0, 0, 0, 0.1), -6px -6px 6px rgba(206, 217, 235, 0.01);
+    margin-bottom: 100px;
+
+    border-radius: 30px;
+
+}
+
+.socialcard a {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 30px;
+    border-style: solid;
+    border-width: 3px;
+    box-shadow: 0px 0px 20px 2px rgba(0, 0, 0, 0.1);
+
+    width: 150px;
+    height: 185px;
+    text-transform: uppercase;
+    transition: 0.3s ;
+
+}
+
+.socialcard p, img {
+
+    transition: 0.3s;
+
+}
+
+.socialcard a:hover{
+ 
+    transform: translateY(-5px);
+    border-color: var(--colora);
+    color: white;
+    cursor: pointer;
+
+}
+
+.socialcard a:hover p{
+    color: var(--colora);
+}
+
+.socialcard a:hover img {
+    width: 80px;
+}
+
+.socialcard img {
+
+    width: 75px;
+
+}
