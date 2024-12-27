@@ -13,6 +13,16 @@
             padding: 10px;
             background-color: #f4f4f4;
             border: 1px solid #ddd;
+            display: flex;
+            justify-content: space-between;
+        }
+        .deleteBtn {
+            cursor: pointer;
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            font-size: 14px;
         }
     </style>
 </head>
@@ -27,21 +37,63 @@
     </div>
 
     <script>
-        // Function to handle adding text to the display area
+        // Function to load the saved text from localStorage and display it
+        function loadSavedText() {
+            const savedText = JSON.parse(localStorage.getItem('textList')) || [];
+            const textList = document.getElementById('textList');
+            textList.innerHTML = ''; // Clear existing items before reloading
+
+            savedText.forEach((text, index) => {
+                const newTextDiv = document.createElement('div');
+                newTextDiv.classList.add('textItem');
+                
+                // Create text content
+                const textContent = document.createElement('span');
+                textContent.textContent = text;
+                
+                // Create delete button
+                const deleteBtn = document.createElement('button');
+                deleteBtn.classList.add('deleteBtn');
+                deleteBtn.textContent = 'Delete';
+                deleteBtn.onclick = function() {
+                    deleteText(index); // Pass the index to the delete function
+                };
+
+                // Append text content and delete button to the new div
+                newTextDiv.appendChild(textContent);
+                newTextDiv.appendChild(deleteBtn);
+
+                // Append the new div to the text list
+                textList.appendChild(newTextDiv);
+            });
+        }
+
+        // Function to save the text to localStorage
+        function saveText(text) {
+            const savedText = JSON.parse(localStorage.getItem('textList')) || [];
+            savedText.push(text); // Add the new text to the list
+            localStorage.setItem('textList', JSON.stringify(savedText)); // Save updated list to localStorage
+        }
+
+        // Function to delete a text item
+        function deleteText(index) {
+            const savedText = JSON.parse(localStorage.getItem('textList')) || [];
+            savedText.splice(index, 1); // Remove the text at the specified index
+            localStorage.setItem('textList', JSON.stringify(savedText)); // Save updated list to localStorage
+            loadSavedText(); // Reload the saved text after deletion
+        }
+
+        // Load saved text when the page is loaded
+        window.onload = loadSavedText;
+
+        // Handle the click event for adding text
         document.getElementById('addTextBtn').addEventListener('click', function() {
             const text = document.getElementById('textInput').value; // Get input text
             if (text.trim()) { // If text is not empty or just spaces
-                const textList = document.getElementById('textList');
-                
-                // Create a new div to hold the input text
-                const newTextDiv = document.createElement('div');
-                newTextDiv.classList.add('textItem');
-                newTextDiv.textContent = text; // Set the text content
+                saveText(text); // Save the new text
+                loadSavedText(); // Reload and display all saved text
 
-                // Append the new text item to the text list
-                textList.appendChild(newTextDiv);
-
-                // Clear the input after adding the text
+                // Clear the input field
                 document.getElementById('textInput').value = '';
             }
         });
