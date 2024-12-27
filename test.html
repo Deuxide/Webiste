@@ -47,7 +47,7 @@
     let delbtn = document.getElementById('delbtn')
 
     function adddata(){
-      set(ref(db, 'EmployeeSet/' + FnameInp.value), {
+      set(ref(db, 'Answer/' + FnameInp.value), {
         answer: AnswerInp.value
       })
       .then(()=>{
@@ -62,7 +62,7 @@
     function retdata(){
       const dbRef = ref(db);
 
-      get(child(dbRef, 'EmployeeSet/' + FnameInp.value)).then((snapshot)=>{
+      get(child(dbRef, 'Answer/' + FnameInp.value)).then((snapshot)=>{
         if(snapshot.exists()){
           AnswerInp.value = snapshot.val().answer;
         }
@@ -78,7 +78,7 @@
     }
 
     function deletedata(){
-      remove(ref(db, 'EmployeeSet/' + FnameInp.value))
+      remove(ref(db, 'Answer/' + FnameInp.value))
       .then(()=>{
         alert("data deleted succesfully");
       })
