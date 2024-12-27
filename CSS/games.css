@@ -20,10 +20,10 @@
 
 }
 
+
 .gamescard {
 
-    background-color: var(--colors);
-    margin-bottom: 100px;
+    background-color: #0c0e12;
 
     display: flex;
     flex-direction: column;
@@ -40,10 +40,48 @@
 
 }
 
+.gamescard:hover {
+
+    background-color: #0c0e12df;
+
+}
+
 #gamescard {
 
     gap: 75px;
 
+}
+
+.gamescard-wrapper {
+
+    margin-bottom: 100px;
+    position: relative;
+    transition: 0.5s;
+    animation: updown 2s ease-in-out infinite alternate;
+
+}
+
+.gamescard-wrapper:hover {
+
+    padding: 2px;
+
+}
+
+@keyframes updown {
+    0% {
+        transform: translateY(0px);
+    }
+    100% {
+        transform: translateY(-15px);
+    }
+}
+
+#a {
+    animation-delay: 1.5s;
+}
+
+#c {
+    animation-delay: 0.5s;
 }
 
 @property --angle{
@@ -51,7 +89,7 @@
     initial-value: 0deg;
     inherits: false;
 }
-.gamescard::after, .gamescard::before{
+.gamescard-wrapper::after, .gamescard-wrapper::before{
     content: '';
     position: absolute;
     height: 100%;
@@ -64,8 +102,10 @@
     padding: 5px;
     border-radius: 33px;
     animation: 4s sin linear infinite;
+
 }
-.gamescard::before{
+
+.gamescard-wrapper::before{
     filter: blur(1.0rem);
     opacity: 25%;
 }
@@ -84,12 +124,6 @@
     } to {
         --angle: 360deg;
     }
-}
-
-.gamescard:hover {
-
-    padding: 10px;
-
 }
 
 .gamescard h1 {
