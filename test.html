@@ -1,103 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Display Input Text</title>
-    <style>
-        #textList {
-            margin-top: 20px;
-        }
-        .textItem {
-            margin-bottom: 10px;
-            padding: 10px;
-            background-color: #f4f4f4;
-            border: 1px solid #ddd;
-            display: flex;
-            justify-content: space-between;
-        }
-        .deleteBtn {
-            cursor: pointer;
-            background-color: red;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            font-size: 14px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AAAAA</title>
 </head>
 <body>
+  <label>Name</label>
+  <input type="text" id="FnameInp">
+  <label>Answer</label>
+  <input type="text" id="AnswerInp">
 
-    <h2>Enter Text</h2>
-    <textarea id="textInput" rows="4" cols="50" placeholder="Type something here..."></textarea><br>
-    <button id="addTextBtn">Add Text</button>
+  <button id="addbtn">Answer</button>
+  <button id="retbtn">Retrieve</button>
+  <button id="delbtn">Delete</button>
 
-    <div id="textList">
-        <!-- Dynamic text will appear here -->
-    </div>
+  <script type="module">
 
-    <script>
-        // Function to load the saved text from localStorage and display it
-        function loadSavedText() {
-            const savedText = JSON.parse(localStorage.getItem('textList')) || [];
-            const textList = document.getElementById('textList');
-            textList.innerHTML = ''; // Clear existing items before reloading
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-analytics.js";
 
-            savedText.forEach((text, index) => {
-                const newTextDiv = document.createElement('div');
-                newTextDiv.classList.add('textItem');
-                
-                // Create text content
-                const textContent = document.createElement('span');
-                textContent.textContent = text;
-                
-                // Create delete button
-                const deleteBtn = document.createElement('button');
-                deleteBtn.classList.add('deleteBtn');
-                deleteBtn.textContent = 'Delete';
-                deleteBtn.onclick = function() {
-                    deleteText(index); // Pass the index to the delete function
-                };
+    const firebaseConfig = {
+      apiKey: "AIzaSyDh-yS0dsCY8ByYLFPiOU9h11m8kV5JFzk",
+      authDomain: "deuxite.firebaseapp.com",
+      databaseURL: "https://deuxite-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "deuxite",
+      storageBucket: "deuxite.firebasestorage.app",
+      messagingSenderId: "477722605776",
+      appId: "1:477722605776:web:a1e077450c894b4653c6d5",
+      measurementId: "G-5G6484FCCL"
+    };
+  
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
 
-                // Append text content and delete button to the new div
-                newTextDiv.appendChild(textContent);
-                newTextDiv.appendChild(deleteBtn);
+    import {getDatabase, ref, child, get, set, update, remove} from "https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js";
 
-                // Append the new div to the text list
-                textList.appendChild(newTextDiv);
-            });
+    const db = getDatabase();
+
+    let FnameInp = document.getElementById('FnameInp');
+    let Answer = document.getElementById('AnswerInp')
+
+    let addbtn = document.getElementById('addbtn')
+    let retbtn = document.getElementById('retbtn')
+    let updbtn = document.getElementById('updbtn')
+    let delbtn = document.getElementById('delbtn')
+
+    function adddata(){
+      set(ref(db, 'EmployeeSet/' + FnameInp.value), {
+        answer: AnswerInp.value
+      })
+      .then(()=>{
+        alert("data added succesfully");
+      })
+      .catch(()=>{
+        alert("unsuccsesful");
+        console.log(error);
+      })
+    }
+
+    function retdata(){
+      const dbRef = ref(db);
+
+      get(child(dbRef, 'EmployeeSet/' + FnameInp.value)).then((snapshot)=>{
+        if(snapshot.exists()){
+          AnswerInp.value = snapshot.val().answer;
         }
 
-        // Function to save the text to localStorage
-        function saveText(text) {
-            const savedText = JSON.parse(localStorage.getItem('textList')) || [];
-            savedText.push(text); // Add the new text to the list
-            localStorage.setItem('textList', JSON.stringify(savedText)); // Save updated list to localStorage
+        else {
+          alert("nonono")
         }
+      })
+      .catch(()=>{
+        alert("unsuccsesful");
+        console.log(error);
+      })
+    }
 
-        // Function to delete a text item
-        function deleteText(index) {
-            const savedText = JSON.parse(localStorage.getItem('textList')) || [];
-            savedText.splice(index, 1); // Remove the text at the specified index
-            localStorage.setItem('textList', JSON.stringify(savedText)); // Save updated list to localStorage
-            loadSavedText(); // Reload the saved text after deletion
-        }
+    function deletedata(){
+      remove(ref(db, 'EmployeeSet/' + FnameInp.value))
+      .then(()=>{
+        alert("data deleted succesfully");
+      })
+      .catch(()=>{
+        alert("unsuccsesful");
+        console.log(error);
+      })
+    }
 
-        // Load saved text when the page is loaded
-        window.onload = loadSavedText;
+    addbtn.addEventListener('click', adddata);
+    retbtn.addEventListener('click', retdata);
+    delbtn.addEventListener('click', deletedata);
+  </script>
 
-        // Handle the click event for adding text
-        document.getElementById('addTextBtn').addEventListener('click', function() {
-            const text = document.getElementById('textInput').value; // Get input text
-            if (text.trim()) { // If text is not empty or just spaces
-                saveText(text); // Save the new text
-                loadSavedText(); // Reload and display all saved text
-
-                // Clear the input field
-                document.getElementById('textInput').value = '';
-            }
-        });
-    </script>
 
 </body>
 </html>
