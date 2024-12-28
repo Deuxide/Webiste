@@ -31,9 +31,6 @@ function adddata(){
     set(ref(db, 'Answer/' + FnameInp.value), {
     answer: AnswerInp.value
     })
-    .then(()=>{
-    alert("data added succesfully");
-    })
     .catch(()=>{
     alert("unsuccsesful");
     console.log(error);
@@ -42,9 +39,6 @@ function adddata(){
 
 function deletedata(){
     remove(ref(db, 'Answer/' + FnameInp.value))
-    .then(()=>{
-    alert("data deleted succesfully");
-    })
     .catch(()=>{
     alert("unsuccsesful");
     console.log(error);

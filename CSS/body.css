@@ -182,7 +182,13 @@ body {
 
 .row span {
 
-    color: var(--colora);
+    color: var(--colors);
     font-weight: 500;
+    transition: 0.3s;
 
 }
+
+#PCL:hover span{
+    color: var(--colora);
+}
+

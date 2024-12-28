@@ -70,7 +70,7 @@
 
                 <div class="row">
                     <a href="https://www.dictionary.com/browse/name" target="_blank">real name</a>
-                    <span>Umarm </span>
+                    <span>Umar</span>
                 </div>
                 <div class="row">
                     <a href="https://www.dictionary.com/browse/age" target="_blank">Age</a>
@@ -120,11 +120,30 @@
                 <textarea type="text" id="AnswerInp" rows="7" cols="25" placeholder="Answer"></textarea>
 
                 <div>
-                    <button id="addbtn">Answer</button>
-                    <button id="delbtn">Delete</button>
+                    <button onclick="showPopup()" id="addbtn">Answer</button>
+                    <button onclick="showPopup()" id="delbtn">Delete</button>  
                 </div>
             </div>
 
+            <div id="overlay"></div>
+                <div id="popup">
+                    Successfully answered
+                    <br>
+                    <button onclick="hidePopup()">Close</button>
+                </div>
+
+                <script>
+                    function showPopup() {
+                        document.getElementById('popup').style.display = 'flex';
+                        document.getElementById('overlay').style.display = 'block';
+                    }
+            
+                    function hidePopup() {
+                        document.getElementById('popup').style.display = 'none';
+                        document.getElementById('overlay').style.display = 'none';
+                    }
+                </script>
+            </div>
         </div>
 
         <!--GAMESAUIBDWOJF: SA-->
