@@ -50,6 +50,10 @@
 
 @Media(Max-width: 660px) {
 
+    .pages {
+        padding: 20px !important;
+    }
+
     .gamescard-wrapper {
 
         margin-bottom: 0px !important;
@@ -74,6 +78,12 @@
         margin-top: 12px;
         font-size: 100px;
         font-weight: 400;
+
+    }
+
+    #quizzes, #games, #socials {
+
+        font-size: 75px !important;
 
     }
 

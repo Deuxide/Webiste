@@ -1,0 +1,103 @@
+
+#quizzes {
+
+    font-size: 100px;
+    font-weight: 400;
+    text-transform: uppercase;
+
+    margin-top: 125px;
+    margin-bottom: 0px;
+    text-align: center;
+
+}
+
+.qcont {
+
+    width: 300px;
+    height: 400px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0.5rem;
+    
+    background-color: var(--colors);
+    border-radius: 30px;
+    box-shadow: 6px 6px 6px rgba(0, 0, 0, 0.1), -6px -6px 6px rgba(206, 217, 235, 0.01);
+
+}
+
+.qcont h1 {
+    font-size: 50px;
+    font-weight: 500;
+    margin: 0;
+    margin-bottom: 2rem;
+    margin-top: 1rem;
+}
+
+.qcont span {
+    font-weight: 600;
+}
+
+.qcont div {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.qcont input {
+    padding: 5px;
+}
+
+.qcont button {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+
+    padding: 0.75rem;
+    border-radius: 10px;
+    background-color: var(--colors);
+ 
+    outline: none;
+    border-style: solid;
+    border-width: 1.5px;
+    border-color: var(--colorp);
+    transition: 0.3s;
+}
+
+.qcont button:hover {
+    cursor: pointer;
+    border-color: var(--colora);
+    color: var(--colora);
+    transform: translateY(-5px);
+}
+
+.qcont input {
+    margin-bottom: 1rem;
+
+    width: 200px;
+    padding: 0.6rem;
+    border-radius: 10px;
+    background-color: var(--colors);
+
+    outline: none;
+    border-style: solid;
+    border-width: 1.5px;
+    border-color: var(--colorp);
+    transition: 0.3s;
+}
+
+.qcont textarea {
+    width: 200px;
+    padding: 0.6rem;
+    border-radius: 10px;
+    background-color: var(--colors);
+
+    outline: none;
+    border-style: solid;
+    border-width: 1.5px;
+    border-color: var(--colorp);
+    transition: 0.3s;
+}
+}
