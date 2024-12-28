@@ -68,9 +68,26 @@
 
 .qcont button:hover {
     cursor: pointer;
+    transform: translateY(-5px);
+}
+
+.qcont button:active {
+    transform: translateY(5px);
+}
+
+#addbtn:hover {
     border-color: var(--colora);
     color: var(--colora);
-    transform: translateY(-5px);
+}
+
+#retbtn:hover {
+    border-color: #38ca50;
+    color: #38ca50;
+}
+
+#delbtn:hover {
+    border-color:#cf4242;
+    color: #cf4242;
 }
 
 .qcont input {
