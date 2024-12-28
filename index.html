@@ -121,7 +121,7 @@
 
                 <div>
                     <button onclick="showPopup()" id="addbtn">Answer</button>
-                    <button onclick="showPopup()" id="delbtn">Delete</button>  
+                    <button onclick="showPopupDel()" id="delbtn">Delete</button>  
                 </div>
             </div>
 
@@ -132,14 +132,30 @@
                     <button onclick="hidePopup()">Close</button>
                 </div>
 
+                <div id="popupdel">
+                    Successfully deleted
+                    <br>
+                    <button onclick="hidePopup()">Close</button>
+                </div>
+
                 <script>
                     function showPopup() {
-                        document.getElementById('popup').style.display = 'flex';
-                        document.getElementById('overlay').style.display = 'block';
+                        setTimeout(()=>{
+                            document.getElementById('popup').style.display = 'flex';
+                            document.getElementById('overlay').style.display = 'block';
+                        }, 500)
+                    }
+
+                    function showPopupDel() {
+                        setTimeout(()=>{
+                            document.getElementById('popupdel').style.display = 'flex';
+                            document.getElementById('overlay').style.display = 'block';
+                        }, 500)
                     }
             
                     function hidePopup() {
                         document.getElementById('popup').style.display = 'none';
+                        document.getElementById('popupdel').style.display = 'none';
                         document.getElementById('overlay').style.display = 'none';
                     }
                 </script>

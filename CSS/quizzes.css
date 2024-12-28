@@ -99,7 +99,7 @@
 }
 
 #addbtn {
-    width: 150px;
+    width: 159px;
 }
 
 #addbtn:hover {
@@ -185,6 +185,47 @@
 }
 
 #popup button:hover {
+    cursor: pointer;
+    transform: translateY(-5px);
+    border-color: var(--colora);
+    color: var(--colora);
+}
+
+#popupdel {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    font-weight: 600;
+
+    padding: 2rem;
+    border-radius: 30px;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--colors);
+
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+#popupdel button {
+    margin-top: 1rem;
+    padding: 0.75rem;
+    border-radius: 10px;
+    background-color: var(--colors);
+    outline: none;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #ffffff09;
+    transition: 0.3s;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #6a6a6b;
+}
+
+#popupdel button:hover {
     cursor: pointer;
     transform: translateY(-5px);
     border-color: var(--colora);
