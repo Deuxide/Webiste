@@ -25,6 +25,7 @@
     width: 300px;
     height: 400px;
 
+    text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -45,6 +46,7 @@
 
 .qcont:hover span {
     color: var(--colorp);
+    opacity: 0.75;
 }
 
 .qcont h1 {
@@ -56,6 +58,8 @@
 }
 
 .qcont span {
+    font-size: 20px;
+    line-height: 30px;
     font-weight: 600;
     color: var(--colors);
     transition: 0.4s;
@@ -65,10 +69,6 @@
     display: flex;
     flex-direction: row;
     gap: 10px;
-}
-
-.qcont input {
-    padding: 5px;
 }
 
 .qcont button {
@@ -81,9 +81,12 @@
  
     outline: none;
     border-style: solid;
-    border-width: 1.5px;
+    border-width: 2px;
     border-color: #ffffff09;
     transition: 0.3s;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #6a6a6b;
 }
 
 .qcont button:hover {
@@ -96,7 +99,7 @@
 }
 
 #addbtn {
-    width: 100px;
+    width: 150px;
 }
 
 #addbtn:hover {
@@ -110,22 +113,25 @@
 }
 
 .qcont input {
+    padding: 5px;
     margin-bottom: 1rem;
 
-    width: 200px;
+    width: 230px;
     padding: 0.6rem;
     border-radius: 10px;
     background-color: var(--colors);
 
     outline: none;
     border-style: solid;
-    border-width: 1.5px;
+    border-width: 2px;
     border-color: #ffffff09;
     transition: 0.3s;
+    font-weight: 600;
+    font-size: 1rem;
 }
 
 .qcont textarea {
-    width: 200px;
+    width: 230px;
     padding: 0.6rem;
     border-radius: 10px;
     background-color: var(--colors);
@@ -133,9 +139,11 @@
 
     outline: none;
     border-style: solid;
-    border-width: 1.5px;
+    border-width: 2px;
     border-color: #ffffff09;
     transition: 0.3s;
+    font-weight: 600;
+    font-size: 1rem;
 }
 
 .qcont input:hover, .qcont textarea:hover {
