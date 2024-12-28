@@ -95,14 +95,13 @@
     transform: translateY(5px);
 }
 
+#addbtn {
+    width: 100px;
+}
+
 #addbtn:hover {
     border-color: #38ca50;
     color: #38ca50;
-}
-
-#retbtn:hover {
-    border-color: #e0c320;
-    color: #e0c320;
 }
 
 #delbtn:hover {

@@ -1,3 +1,5 @@
+
+
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-analytics.js";
 
@@ -15,7 +17,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 
-import {getDatabase, ref, child, get, set, remove} from "https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js";
+import {getDatabase, ref, set, remove} from "https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js";
 
 const db = getDatabase();
 
@@ -23,7 +25,6 @@ let FnameInp = document.getElementById('FnameInp');
 let AnswerInp = document.getElementById('AnswerInp')
 
 let addbtn = document.getElementById('addbtn')
-let retbtn = document.getElementById('retbtn')
 let delbtn = document.getElementById('delbtn')
 
 function adddata(){
@@ -32,24 +33,6 @@ function adddata(){
     })
     .then(()=>{
     alert("data added succesfully");
-    })
-    .catch(()=>{
-    alert("unsuccsesful");
-    console.log(error);
-    })
-}
-
-function retdata(){
-    const dbRef = ref(db);
-
-    get(child(dbRef, 'Answer/' + FnameInp.value)).then((snapshot)=>{
-    if(snapshot.exists()){
-        AnswerInp.value = snapshot.val().answer;
-    }
-
-    else {
-        alert("You haven't answered bruh -_-")
-    }
     })
     .catch(()=>{
     alert("unsuccsesful");
@@ -69,5 +52,5 @@ function deletedata(){
 }
 
 addbtn.addEventListener('click', adddata);
-retbtn.addEventListener('click', retdata);
 delbtn.addEventListener('click', deletedata);
+
