@@ -11,6 +11,15 @@
 
 }
 
+#quizzes p {
+
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 0px;
+    opacity: 0.3;
+    
+}
+
 .qcont {
 
     width: 300px;
@@ -26,7 +35,16 @@
     background-color: var(--colors);
     border-radius: 30px;
     box-shadow: 6px 6px 6px rgba(0, 0, 0, 0.1), -6px -6px 6px rgba(206, 217, 235, 0.01);
+    transition: 0.4s;
 
+}
+
+.qcont:hover {
+    transform: translateY(-5px);
+}
+
+.qcont:hover span {
+    color: var(--colorp);
 }
 
 .qcont h1 {
@@ -39,6 +57,8 @@
 
 .qcont span {
     font-weight: 600;
+    color: var(--colors);
+    transition: 0.4s;
 }
 
 .qcont div {
@@ -62,7 +82,7 @@
     outline: none;
     border-style: solid;
     border-width: 1.5px;
-    border-color: var(--colorp);
+    border-color: #ffffff09;
     transition: 0.3s;
 }
 
@@ -76,13 +96,13 @@
 }
 
 #addbtn:hover {
-    border-color: var(--colora);
-    color: var(--colora);
+    border-color: #38ca50;
+    color: #38ca50;
 }
 
 #retbtn:hover {
-    border-color: #38ca50;
-    color: #38ca50;
+    border-color: #e0c320;
+    color: #e0c320;
 }
 
 #delbtn:hover {
@@ -101,7 +121,7 @@
     outline: none;
     border-style: solid;
     border-width: 1.5px;
-    border-color: var(--colorp);
+    border-color: #ffffff09;
     transition: 0.3s;
 }
 
@@ -110,11 +130,15 @@
     padding: 0.6rem;
     border-radius: 10px;
     background-color: var(--colors);
+    resize: none;
 
     outline: none;
     border-style: solid;
     border-width: 1.5px;
-    border-color: var(--colorp);
+    border-color: #ffffff09;
     transition: 0.3s;
 }
+
+.qcont input:hover, .qcont textarea:hover {
+    border-color: var(--colora);
 }
