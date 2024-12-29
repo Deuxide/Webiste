@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
-import { getAuth, GoogleAuthProvider, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
+import { getAuth, GoogleAuthProvider, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyDh-yS0dsCY8ByYLFPiOU9h11m8kV5JFzk",
@@ -35,6 +35,18 @@ onAuthStateChanged(auth, (user) => {
         return uid;
     } else {
         // User is not signed in, redirect to the registration page
-        alert("Create Account & login");
+        window.location.href = '/reqlog.html'
     }
+});
+
+document.getElementById('logout').addEventListener('click', () => {
+    signOut(auth)
+        .then(() => {
+            console.log("User signed out successfully");
+            // Optionally redirect to login or home page
+            window.location.href = '/reqlog.html';
+        })
+        .catch((error) => {
+            console.error("Error signing out:", error);
+        });
 });

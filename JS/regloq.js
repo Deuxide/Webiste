@@ -34,7 +34,7 @@ googlelogin.addEventListener("click", function(){
         const errorMessage = error.message;
 
     });
-})
+});
 
 function updateUserProfile(user) {
     const userName = user.displayName;
