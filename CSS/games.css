@@ -54,6 +54,7 @@
 
 .gamescard-wrapper {
 
+    margin-top: 2rem;
     margin-bottom: 100px;
     position: relative;
     transition: 0.5s;
