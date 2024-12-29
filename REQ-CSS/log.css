@@ -1,0 +1,29 @@
+:root {
+    --colorp: #a7b0c0;
+    --colors: #0c0e12;
+    --colora: #615ac7;
+}
+
+*{
+    font-family: "Raleway", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 900;
+    font-style: normal;
+    color: var(--colorp);
+    height: fit-content;
+    user-select: none;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+  }
+
+body {
+    background: var(--colors);
+}
+
+::-webkit-scrollbar{
+    display: none;
+}
