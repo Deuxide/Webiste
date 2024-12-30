@@ -164,8 +164,8 @@ body {
 
     outline: none;
     border-style: solid;
-    border-width: 1px;
-    border-color: #a7b0c073;
+    border-width: 1.5px;
+    border-color: #a7b0c010;
     border-radius: 30px;
 
     transition: 0.3s;
@@ -175,8 +175,9 @@ body {
 #google-login-btn::before {
     content: '';
     position: absolute;
-    height: 100px;
+    height: 65px;
     width: 230px;
+    border-radius: 20px;
     background: #ffffff;
     opacity: 0.07;
     transform: translateX(-250px);
@@ -202,4 +203,10 @@ body {
 #google-login-btn img {
     margin-left: 5px;
     transition: 0.3s;
+}
+
+.card a {
+    margin-top: 10px;
+    font-size: 15px;
+    text-decoration: none;
 }
