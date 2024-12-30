@@ -77,9 +77,10 @@ main {
 }
 footer {
     grid-area: footer;
-    background-color: black;
-    color: white;
+    background-color: rgba(0, 0, 0, 0.25);
+    color: var(--colorp);
     padding: 1em;
+    font-weight: 600;
 }
 
 main p {
