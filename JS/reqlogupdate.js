@@ -57,7 +57,7 @@ onAuthStateChanged(auth, (user) => {
     }
 });
 
-document.getElementById('logout').addEventListener('click', () => {
+document.getElementById('logoutbtn').addEventListener('click', () => {
     signOut(auth)
         .then(() => {
             console.log("User signed out successfully");
@@ -68,4 +68,3 @@ document.getElementById('logout').addEventListener('click', () => {
             console.error("Error signing out:", error);
         });
 });
-

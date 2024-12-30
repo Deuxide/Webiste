@@ -13,16 +13,67 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=logout" />
     
     <script src="JS/reqlogupdate.js" async type="module"></script>
+    <script src="JS/req.js" async></script>
 
 </head>
 <body>
-    <h1>Loggin in as vv</h1>
-    <h2 id="userName"></h2>
-    <h2 id="userEmail"></h2>
-    <img id="userProfilePicture">
+    <nav> 
 
-    <button id="logout">log out</button>
+        <button id="shownav" onclick="toggleSidebar()">button</button>
+        <button onclick="showPopup()" id="logout">logout
+            <span class="material-symbols-outlined">
+                logout
+            </span>
+        </button>
+        
+    </nav>
+    
+    <div id="overlay"></div>
+            <div id="popup">
+                Are you sure you want to logout?
+                <br>
+                <button onclick="hidePopup()" id="logoutbtn">Logout</button>
+                <button onclick="hidePopup()" id="closebtn">close</button>
+            </div>
+
+            <script>
+                function showPopup() {
+                    setTimeout(()=>{
+                        document.getElementById('popup').style.display = 'flex';
+                        document.getElementById('overlay').style.display = 'block';
+                    }, 500)
+                }
+        
+                function hidePopup() {
+                    document.getElementById('popup').style.display = 'none';
+                    document.getElementById('overlay').style.display = 'none';
+                }
+            </script>
+        </div>
+
+    <aside id="sidebar">
+
+        <div class="accinfo">
+            <div>
+                <p id="userName"></p>
+                <p id="userEmail"></p>
+            </div>
+            <img id="userProfilePicture">
+        </div>
+
+    </aside>
+
+    <main>
+
+
+       
+
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perferendis voluptatem placeat, nulla eum inventore corrupti temporibus eius voluptatum excepturi. Fuga earum, ut dolorum, eos dolor ab alias hic voluptatibus, id molestiae distinctio saepe doloribus culpa? Dolorum fugit tenetur obcaecati, error provident reiciendis voluptates tempore, doloribus praesentium alias nulla hic excepturi animi commodi quam debitis cumque ex et consectetur. Nihil cumque voluptate ea officiis eos quidem vero molestiae consequuntur numquam iusto sunt doloremque, rerum exercitationem soluta, distinctio libero sapiente odio sit! Aut quae odit consequatur, quibusdam quidem maxime reiciendis quisquam praesentium totam deserunt esse molestias nobis tempore magnam laborum itaque voluptates.</p>
+    </main>
+
+    <footer>Footer</footer>
 </body>
 </html>

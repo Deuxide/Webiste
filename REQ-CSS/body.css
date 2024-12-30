@@ -14,16 +14,240 @@
     user-select: none;
 }
 
+::-webkit-scrollbar{
+    display: none;
+}
+
 html, body {
     margin: 0;
     padding: 0;
     scroll-behavior: smooth;
-  }
-
-body {
-    background: var(--colors);
 }
 
-::-webkit-scrollbar{
+body {
+    min-height: 100vh;
+
+    background-color: var(--colors);
+    animation: color 25s ease-in-out infinite;
+    background-size: 300% 300%;
+
+    display: grid;
+    grid-template-columns: 275px 1fr;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+    "navbar navbar"
+    "sidebar main"
+    "sidebar footer";
+}
+
+
+nav {
+    height: 60px;
+    top: 0;
+    position: sticky;
+    grid-area: navbar;
+    background-color: rgba(0, 0, 0, 0.35);
+    color: white;
+    backdrop-filter: blur(0.5rem);
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+}
+aside {
+    height: calc(100vh - 60px);
+    top: 60px;
+    position: sticky;
+    align-self: start;
+    grid-area: sidebar;
+    background-color: rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(0.5rem);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+main {
+    grid-area: main;
+    padding: 2rem;
+}
+footer {
+    grid-area: footer;
+    background-color: black;
+    color: white;
+    padding: 1em;
+}
+
+main p {
+    margin-bottom: 100em;
+}
+@media(max-width: 800px) {
+    body {
+        grid-template-columns: 1fr;
+    }
+    aside {
+        position: fixed;
+        width: 275px;
+        display: none;
+    }
+    .show {
+        display: block;
+    }
+}
+
+#shownav {
     display: none;
+}
+
+#logout {
+    padding: 9px;
+    margin-right: 1rem;
+    background-color: var(--colors);
+
+    outline: none;
+    border: none;
+    border-radius: 15px;
+
+    display: flex;
+    align-items: center;
+
+    color: #a7b0c03b;
+    font-size: 15px;
+    font-weight: 600;
+
+    transition: 0.3s;
+}
+
+.material-symbols-outlined {
+    margin-left: 5px;
+    color: #a7b0c03b;
+    transition: 0.3s;
+}
+
+#logout:hover {
+    cursor: pointer;
+    color: rgb(189, 46, 46);
+}
+
+#logout:hover span {
+    color: rgb(189, 46, 46);
+}
+
+#overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(0.5rem);
+    z-index: 999;
+}
+
+#popup {
+    display: none;
+    flex-direction: row;
+    align-items: center;
+    position: fixed;
+    flex-wrap: wrap;
+    font-weight: 600;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 220px;
+    padding: 2rem;
+    border-radius: 30px;
+
+    background-color: var(--colors);
+
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+#popup button {
+    margin-top: 1rem;
+    padding: 0.75rem;
+    border-radius: 10px;
+    background-color: var(--colors);
+    outline: none;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #ffffff09;
+    transition: 0.3s;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #6a6a6b;
+}
+
+#closebtn {
+    margin-left: 0.75rem;
+}
+
+#closebtn:hover {
+    cursor: pointer;
+    transform: translateY(-3px);
+    border-color: var(--colora);
+    color: var(--colora);
+}
+
+#logoutbtn:hover {
+    cursor: pointer;
+    transform: translateY(-3px);
+    border-color: rgb(189, 46, 46);
+    color: rgb(189, 46, 46);
+}
+
+/*account info*/
+
+.accinfo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    width: 250px;
+    height: 85px;
+
+    background-color: var(--colors);
+    border-radius: 20px;
+
+    margin-top: auto;
+    margin-bottom: 2rem;
+}
+
+.accinfo div {
+    margin: 0;
+    flex-direction: column;
+    margin-right: 10px;
+}
+
+#userName {
+    font-size: 20px;
+    font-weight: 700;
+    transition: 0.3s;
+}
+
+#userEmail {
+    font-weight: 600;
+    opacity: 0.3;
+    transition: 0.3s;
+}
+
+#userEmail:hover {
+    opacity: 0.6;
+}
+
+#userProfilePicture {
+    width: 50px;
+    border-radius: 30px;
+    border-style: solid;
+    border-width: 2px;
+    border-color:  var(--colora);
+    padding: 2px;
 }
