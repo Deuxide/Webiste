@@ -48,7 +48,7 @@ nav {
     grid-area: navbar;
     background-color: rgba(0, 0, 0, 0.35);
     color: white;
-    backdrop-filter: blur(0.5rem);
+    backdrop-filter: blur(1rem);
 
     display: flex;
     flex-direction: row;
@@ -62,7 +62,7 @@ aside {
     align-self: start;
     grid-area: sidebar;
     background-color: rgba(0, 0, 0, 0.25);
-    backdrop-filter: blur(0.5rem);
+    backdrop-filter: blur(1rem);
 
     display: flex;
     flex-direction: column;
@@ -84,6 +84,34 @@ footer {
 main p {
     margin-bottom: 100em;
 }
+
+#shownav {
+    display: none;
+    margin-left: 1rem;
+    margin-right: auto;
+    padding: 12px;
+
+    background-color: var(--colors);
+
+    outline: none;
+    border: none;
+    border-radius: 15px;
+
+    display: flex;
+    align-items: center;
+
+    color: #a7b0c03b;
+    font-size: 15px;
+    font-weight: 600;
+
+    transition: 0.3s;
+}
+
+#shownav:hover {
+    cursor: pointer;
+    color: var(--colora);    
+}
+
 @media(max-width: 800px) {
     body {
         grid-template-columns: 1fr;
@@ -94,12 +122,11 @@ main p {
         display: none;
     }
     .show {
-        display: block;
+        display: flex;
     }
-}
-
-#shownav {
-    display: none;
+    #shownav {
+        display: flex;
+    }
 }
 
 #logout {
