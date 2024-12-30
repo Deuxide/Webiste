@@ -1,3 +1,24 @@
+document.addEventListener("contextmenu", (event) => {
+    event.preventDefault();
+});
+
+document.addEventListener("keydown", (event) => {
+    if (event.ctrlKey && event.key === "u") {
+        event.preventDefault();
+        alert("Viewing the source code is disabled!");
+    }
+    // Disable F12
+    if (event.key === "F12") {
+        event.preventDefault();
+        alert("Developer tools are disabled!");
+    }
+    // Disable Ctrl+Shift+I or Ctrl+Shift+C
+    if (event.ctrlKey && event.shiftKey && (event.key === "I" || event.key === "C")) {
+        event.preventDefault();
+        alert("Inspect functionality is disabled!");
+    }
+});
+
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
 import { getAuth, GoogleAuthProvider, signInWithPopup} from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
 
@@ -50,23 +71,3 @@ function updateUserProfile(user) {
 
 updateUserProfile()
 
-document.addEventListener("contextmenu", (event) => {
-    event.preventDefault();
-});
-
-document.addEventListener("keydown", (event) => {
-    if (event.ctrlKey && event.key === "u") {
-        event.preventDefault();
-        alert("Viewing the source code is disabled!");
-    }
-    // Disable F12
-    if (event.key === "F12") {
-        event.preventDefault();
-        alert("Developer tools are disabled!");
-    }
-    // Disable Ctrl+Shift+I or Ctrl+Shift+C
-    if (event.ctrlKey && event.shiftKey && (event.key === "I" || event.key === "C")) {
-        event.preventDefault();
-        alert("Inspect functionality is disabled!");
-    }
-});
