@@ -86,7 +86,7 @@ main p {
 }
 
 #shownav {
-    display: none;
+    display: none !important;
     margin-left: 1rem;
     margin-right: auto;
     padding: 12px;
