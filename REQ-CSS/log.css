@@ -157,13 +157,14 @@ body {
     padding: 1.25rem;
     background-color: var(--colors);
 
+    color: #a7b0c057;
     font-size: 17px;
     font-weight: 700;
     text-transform: uppercase;
 
     outline: none;
     border-style: solid;
-    border-width: 2px;
+    border-width: 1px;
     border-color: #a7b0c073;
     border-radius: 30px;
 
@@ -191,6 +192,7 @@ body {
     border-color: var(--colorp);
     box-shadow: 0 0 5px var(--colorp);
     transform: translateY(-3px);
+    color: var(--colorp);
 }
 
 #google-login-btn:active {
