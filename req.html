@@ -22,7 +22,7 @@
 <body>
     <nav> 
 
-        <button id="shownav" onclick="toggleSidebar()">sidebar</button>
+        <button id="shownav" onclick="toggleSidebar()">Open Sidebar</button>
         <button onclick="showPopup()" id="logout">logout
             <span class="material-symbols-outlined">
                 logout
@@ -32,27 +32,27 @@
     </nav>
     
     <div id="overlay"></div>
-            <div id="popup">
-                Are you sure you want to logout?
-                <br>
-                <button onclick="hidePopup()" id="logoutbtn">Logout</button>
-                <button onclick="hidePopup()" id="closebtn">close</button>
-            </div>
-
-            <script>
-                function showPopup() {
-                    setTimeout(()=>{
-                        document.getElementById('popup').style.display = 'flex';
-                        document.getElementById('overlay').style.display = 'block';
-                    }, 500)
-                }
-        
-                function hidePopup() {
-                    document.getElementById('popup').style.display = 'none';
-                    document.getElementById('overlay').style.display = 'none';
-                }
-            </script>
+        <div id="popup">
+            Are you sure you want to logout?
+            <br>
+            <button onclick="hidePopup()" id="logoutbtn">Logout</button>
+            <button onclick="hidePopup()" id="closebtn">close</button>
         </div>
+
+        <script>
+            function showPopup() {
+                setTimeout(()=>{
+                    document.getElementById('popup').style.display = 'flex';
+                    document.getElementById('overlay').style.display = 'block';
+                }, 500)
+            }
+    
+            function hidePopup() {
+                document.getElementById('popup').style.display = 'none';
+                document.getElementById('overlay').style.display = 'none';
+            }
+        </script>
+    </div>
 
     <aside id="sidebar">
 

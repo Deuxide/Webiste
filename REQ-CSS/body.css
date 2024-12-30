@@ -68,6 +68,7 @@ aside {
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
+    transition: 0.5s;
 }
 
 main {
@@ -86,7 +87,8 @@ main p {
 }
 
 #shownav {
-    display: none !important;
+    opacity: 0;
+    display: flex;
     margin-left: 1rem;
     margin-right: auto;
     padding: 12px;
@@ -108,7 +110,6 @@ main p {
 }
 
 #shownav:hover {
-    cursor: pointer;
     color: var(--colora);    
 }
 
@@ -120,12 +121,47 @@ main p {
         position: fixed;
         width: 275px;
         display: none;
+        opacity: 0;
     }
+
     .show {
+        animation: sidemuncul 0.5s ease-in-out forwards;
         display: flex;
     }
-    #shownav {
+
+    .dontshow {
+        animation: sidehilang 0.5s ease-in-out forwards;
         display: flex;
+    }
+
+    #shownav {
+        opacity: 1;
+    }
+    #shownav:hover {
+        cursor: pointer;
+    }
+    
+}
+
+@keyframes sidemuncul {
+    0% {
+        transform: translateX(-275px);
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+        display: flex;
+    }
+}
+
+@keyframes sidehilang {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(-275px);
+        opacity: 0;
+        display: none;
     }
 }
 

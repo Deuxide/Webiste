@@ -9,6 +9,7 @@ document.addEventListener("keydown", (event) => {
     // Disable F12
     if (event.key === "F12") {
         event.preventDefault();
+        alert(8)
     }
     // Disable Ctrl+Shift+I or Ctrl+Shift+C
     if (event.ctrlKey && event.shiftKey && (event.key === "I" || event.key === "C")) {
