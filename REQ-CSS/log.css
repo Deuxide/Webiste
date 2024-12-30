@@ -1,6 +1,6 @@
 :root {
     --colorp: #a7b0c0;
-    --colors: #0c0e12;
+    --colors: #141f31;
     --colora: #615ac7;
 }
 
@@ -26,4 +26,174 @@ body {
 
 ::-webkit-scrollbar{
     display: none;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 100vh;
+    width: 100%;
+    background-image: linear-gradient(to right bottom, #0c0e12, #11151e, #141a29, #181f34, #1e2340, #23274a, #292b54, #302e5e, #353369, #3a3774, #403c80, #45418b);
+    background-size: 300% 300%;
+    animation: color 25s ease-in-out infinite ;
+}
+
+@keyframes color {
+    0%{
+        background-position: 0, 50%;
+    }
+    50%{
+        background-position: 100%, 50%;
+    }
+    100%{
+        background-position: 0, 50%;
+    }
+}
+
+.card { 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    font-weight: 600;
+
+    text-align: center;
+
+    width: 250px;
+    height: 230px;
+
+    border-radius: 30px;
+
+    background-color: #141f31;
+    backdrop-filter: blur(1rem);
+    padding: 2rem;
+    transition: 0.5s;
+
+    filter: blur(0.5px);
+}
+
+.card-wrapper {
+    position: relative;
+    transition: 0.5s;
+    animation: updown 2s ease-in-out infinite alternate;
+}
+
+@keyframes updown {
+    0% {
+        transform: translateY(0px);
+    }
+    100% {
+        transform: translateY(-15px);
+    }
+}
+
+@property --angle{
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+.card-wrapper::after, .card-wrapper::before{
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-image: conic-gradient(from var(--angle), var(--colorp),  var(--colora), var(--colora), var(--colorp));
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    z-index: -1;
+    padding: 7px;
+    border-radius: 33px;
+    animation: 4s sin linear infinite;
+
+}
+
+.card-wrapper::before{
+    filter: blur(1.0rem);
+    opacity: 25%;
+}
+
+@keyframes sin {
+    from{
+        --angle: 0deg;
+    } to {
+        --angle: 360deg;
+    }
+}
+
+.card:hover {
+    padding: 2.7rem;
+    background-color: #141f31df;
+    filter: none;
+}
+
+.card h1 {
+    margin: 0;
+    font-size: 45px;
+    transition: 0.5s;
+}
+
+.card:hover h1 {
+    font-size: 50px;
+}
+
+.card h2 {
+    opacity: 0.3;
+    margin: 0;
+    margin-top: 0.5rem;
+    margin-bottom: 1.2rem;
+}
+
+#google-login-btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 260px;
+    padding: 1.25rem;
+    background-color: var(--colors);
+
+    font-size: 17px;
+    font-weight: 700;
+    text-transform: uppercase;
+
+    outline: none;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #a7b0c073;
+    border-radius: 30px;
+
+    transition: 0.3s;
+    overflow: hidden;
+}
+
+#google-login-btn::before {
+    content: '';
+    position: absolute;
+    height: 100px;
+    width: 230px;
+    background: #ffffff;
+    opacity: 0.07;
+    transform: translateX(-250px);
+    transition: 0.7s;
+}
+
+#google-login-btn:hover::before {
+    transform: translateX(250px);
+}
+
+#google-login-btn:hover {
+    cursor: pointer;
+    border-color: var(--colorp);
+    box-shadow: 0 0 5px var(--colorp);
+    transform: translateY(-3px);
+}
+
+#google-login-btn img {
+    margin-left: 5px;
+    transition: 0.3s;
 }
