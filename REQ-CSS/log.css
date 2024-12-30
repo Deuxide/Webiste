@@ -193,6 +193,10 @@ body {
     transform: translateY(-3px);
 }
 
+#google-login-btn:active {
+    transform: translateY(3px);
+}   
+
 #google-login-btn img {
     margin-left: 5px;
     transition: 0.3s;

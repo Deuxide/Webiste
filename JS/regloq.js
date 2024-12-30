@@ -20,20 +20,22 @@ const provider = new GoogleAuthProvider();
 
 const googlelogin = document.getElementById('google-login-btn');
 googlelogin.addEventListener("click", function(){
+    setTimeout(()=>{
     signInWithPopup(auth, provider)
-    .then((result) => {
+        .then((result) => {
 
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const user = result.user;
-        console.log(user);
-        window.location.href = "../req.html";
+            const credential = GoogleAuthProvider.credentialFromResult(result);
+            const user = result.user;
+            console.log(user);
+            window.location.href = "../req.html";
 
-    }).catch((error) => {
+        }).catch((error) => {
 
-        const errorCode = error.code;
-        const errorMessage = error.message;
+            const errorCode = error.code;
+            const errorMessage = error.message;
 
-    });
+        });
+    }, 500);
 });
 
 function updateUserProfile(user) {
