@@ -87,6 +87,7 @@
     font-size: 1rem;
     font-weight: 600;
     color: #6a6a6b;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .qcont button:hover {
@@ -183,6 +184,7 @@
     font-size: 1rem;
     font-weight: 600;
     color: #6a6a6b;
+    -webkit-tap-highlight-color: transparent;
 }
 
 #popup button:hover {
@@ -224,6 +226,7 @@
     font-size: 1rem;
     font-weight: 600;
     color: #6a6a6b;
+    -webkit-tap-highlight-color: transparent;
 }
 
 #popupdel button:hover {

@@ -105,12 +105,17 @@ main p {
     color: #a7b0c03b;
     font-size: 15px;
     font-weight: 600;
+    -webkit-tap-highlight-color: transparent;
 
     transition: 0.3s;
 }
 
-#shownav:hover {
-    color: var(--colora);    
+#shownav:focus {
+    outline: none;
+}
+
+#shownav:active {
+    color: var(--colora);
 }
 
 @media(max-width: 800px) {
@@ -182,6 +187,7 @@ main p {
     font-weight: 600;
 
     transition: 0.3s;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .material-symbols-outlined {

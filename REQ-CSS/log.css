@@ -170,6 +170,8 @@ body {
 
     transition: 0.3s;
     overflow: hidden;
+
+    -webkit-tap-highlight-color: transparent;
 }
 
 #google-login-btn::before {
