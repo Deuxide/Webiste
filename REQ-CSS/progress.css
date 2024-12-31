@@ -1,6 +1,7 @@
 #progress {
-    margin: 2rem auto 0.5rem 0;
-    font-size: 75px;
+    margin: 0;
+    align-self: flex-start;
+    font-size: 5vw ;
     font-weight: 400;
     text-transform: uppercase;
 }
@@ -102,4 +103,10 @@
 
 #check {
     color: #22c55e;
+}
+
+@media(max-width: 330px) {
+    .progress {
+        font-size: 15px;
+    }
 }
