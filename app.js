@@ -14,7 +14,6 @@ const firebaseConfig = {
     measurementId: "G-5G6484FCCL"
 };
 
-
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
@@ -32,9 +31,12 @@ submitBtn.addEventListener('click', function() {
 
     if (name && comment) {
         const newCommentRef = push(ref(database, 'comments'));
+        const timestamp = Date.now();  // Get the current timestamp
+
         set(newCommentRef, {
             name: name,
-            comment: comment
+            comment: comment,
+            timestamp: timestamp // Save the timestamp along with the comment
         }).then(() => {
             nameInput.value = '';
             commentInput.value = '';
@@ -64,23 +66,37 @@ onChildAdded(commentsRef, (snapshot) => {
     deleteButton.classList.add('delete-btn');
     deleteButton.textContent = 'Delete';
 
-    // Delete comment from Firebase and remove from DOM
-    deleteButton.addEventListener('click', function() {
-        const commentRef = ref(database, 'comments/' + commentKey); // Get reference to the comment by its key
-        
-        // Remove the comment from Firebase
-        remove(commentRef).then(() => {
-            // Find and remove the comment from the DOM immediately
-            commentElement.remove(); 
-            console.log('Comment deleted successfully');
-        }).catch((error) => {
-            console.error('Error deleting comment:', error);
+    // Calculate the difference between current time and comment timestamp
+    const timeElapsed = (Date.now() - commentData.timestamp) / 1000; // in seconds
+
+    if (timeElapsed <= 30) {
+        // Show delete button if 30 seconds haven't passed
+        deleteButton.style.display = 'block';
+
+        // Delete comment from Firebase and remove from DOM
+        deleteButton.addEventListener('click', function() {
+            const commentRef = ref(database, 'comments/' + commentKey); // Get reference to the comment by its key
+
+            // Remove the comment from Firebase
+            remove(commentRef).then(() => {
+                // Find and remove the comment from the DOM immediately
+                commentElement.remove(); 
+                console.log('Comment deleted successfully');
+            }).catch((error) => {
+                console.error('Error deleting comment:', error);
+            });
         });
-    });
+    } else {
+        // Hide the delete button after 30 seconds
+        deleteButton.style.display = 'none';
+    }
 
     commentElement.appendChild(commentName);
     commentElement.appendChild(commentText);
     commentElement.appendChild(deleteButton);
 
     commentsContainer.appendChild(commentElement);
+
+    // Check if the delete button is still visible
+
 });
