@@ -7,6 +7,18 @@
     text-transform: uppercase;
 }
 
+@media(max-width: 800px) {
+    #achievement {
+        font-size: 46px;
+    }
+}
+
+@media(max-width: 400px) {
+    #achievement {
+        font-size: 32px;
+    }
+}
+
 .achieved {
     display: flex;
     flex-direction: row;
@@ -68,4 +80,5 @@
 
 #ahcstuff p {
     font-weight: 600;
+    margin: 0;
 }

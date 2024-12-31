@@ -1,9 +1,21 @@
 #progress {
-    margin: 0;
+    margin: 4rem 0 0 0;
     align-self: flex-start;
     font-size: 5vw ;
     font-weight: 400;
     text-transform: uppercase;
+}
+
+@media(max-width: 800px) {
+    #progress {
+        font-size: 46px;
+    }
+}
+
+@media(max-width: 800px) {
+    #progress {
+        font-size: 46px;
+    }
 }
 
 .progress {
