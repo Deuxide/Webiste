@@ -192,3 +192,10 @@ body {
     color: var(--colora);
 }
 
+.testhtml {
+    align-self: center;
+    justify-self: center;
+    font-weight: 600;
+    margin: auto;
+    color: rgba(0, 0, 0, 0.377);
+}

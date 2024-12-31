@@ -369,11 +369,13 @@ nav div {
 }
 
 #userEmail {
+    width: 150px;
     margin: 0;
     font-weight: 600;
     opacity: 0.3;
     transition: 0.3s;
     overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 #userEmail:hover {
