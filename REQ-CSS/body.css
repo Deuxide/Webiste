@@ -42,11 +42,11 @@ body {
 
 
 nav {
-    height: 60px;
+    height: 70px;
     top: 0;
     position: sticky;
     grid-area: navbar;
-    background-color: rgba(0, 0, 0, 0.35);
+    background-color: rgba(0, 0, 0, 0.45);
     color: white;
     backdrop-filter: blur(1rem);
 
@@ -56,12 +56,12 @@ nav {
     justify-content: flex-end;
 }
 aside {
-    height: calc(100vh - 60px);
-    top: 60px;
+    height: calc(100vh - 70px);
+    top: 70px;
     position: sticky;
     align-self: start;
     grid-area: sidebar;
-    background-color: rgba(0, 0, 0, 0.25);
+    background-color: rgba(0, 0, 0, 0.35);
     backdrop-filter: blur(1rem);
 
     display: flex;
@@ -88,8 +88,6 @@ main p {
 }
 
 #shownav {
-    opacity: 0;
-    display: flex;
     margin-left: 1rem;
     margin-right: auto;
     padding: 12px;
@@ -141,12 +139,18 @@ main p {
     }
 
     #shownav {
-        opacity: 1;
+        display: flex;
     }
     #shownav:hover {
         cursor: pointer;
     }
     
+}
+
+@media(min-width: 800px) {
+    #shownav {
+        display: none;
+    }
 }
 
 @keyframes sidemuncul {
@@ -167,6 +171,66 @@ main p {
     100% {
         transform: translateX(-275px);
         opacity: 0;
+        display: none;
+    }
+}
+
+nav div {
+    padding: 5px 10px 5px 10px;
+    margin: 3px auto 0 2.4rem;
+    justify-self: flex-start;
+    background-image: linear-gradient(135deg, #7877c5, #7b7bc5, #7e7ec5, #8182c4, #8485c4, #868ac4, #898fc4, #8c94c4, #919bc4, #97a3c3, #9ea9c2, #a7b0c0);
+    background-size: 300% 300%;
+    animation: moveGradient 1s linear infinite alternate;
+
+    border-radius: 17px;
+    box-shadow: 0 0 10px var(--colorp);
+
+    display: flex;
+    align-items: center;
+
+    color: var(--colors);
+    font-size: 35px;
+    font-weight: 500;
+    text-transform: uppercase;
+
+    animation: moveGradient 10s ease-in-out infinite, updown 3s ease-in-out infinite;
+    transition: 0.3s;
+
+}
+
+@keyframes moveGradient {
+    0%{
+        background-position: 0, 50%;
+    }
+    50%{
+        background-position: 100%, 50%;
+    }
+    100%{
+        background-position: 0, 50%;
+    }
+}
+
+@keyframes updown {
+    0%{
+        transform: translateY(0px);
+    }
+    50%{
+        transform: translateY(-3px);
+    }
+    100%{
+        transform: translateY(0px);
+    }
+}
+
+@media(max-width: 800px) {
+    nav div {
+        margin: 3px auto 0 0;
+    }
+}
+
+@media(max-width: 650px) {
+    nav div {
         display: none;
     }
 }
@@ -298,15 +362,18 @@ main p {
 }
 
 #userName {
+    margin: 0;
     font-size: 20px;
     font-weight: 700;
     transition: 0.3s;
 }
 
 #userEmail {
+    margin: 0;
     font-weight: 600;
     opacity: 0.3;
     transition: 0.3s;
+    overflow: hidden;
 }
 
 #userEmail:hover {
