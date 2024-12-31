@@ -82,3 +82,21 @@
     font-weight: 600;
     margin: 0;
 }
+
+@media(max-width: 840px) {
+    #ahcstuff {
+        width: 100%;
+    }
+}
+
+@media(max-width: 800px) {
+    #ahcstuff {
+        width: 290px;
+    }
+}
+
+@media(max-width: 775px) {
+    #ahcstuff {
+        width: 100%;
+    }
+}
