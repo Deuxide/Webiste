@@ -9,14 +9,19 @@
     <link rel="icon" href="IMAGE/ikan.png">
 
     <link rel="stylesheet" href="REQ-CSS/body.css">
+    <link rel="stylesheet" href="REQ-CSS/sidebar.css">
+    <link rel="stylesheet" href="REQ-CSS/achieved.css">
+    <link rel="stylesheet" href="REQ-CSS/progress.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=logout" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet">
     
     <script src="JS/reqlogupdate.js" async type="module"></script>
     <script src="JS/req.js" async></script>
+    <script src="JS/requestsrequests.js" async type="module"></script>
 
 </head>
 <body>
@@ -24,8 +29,9 @@
 
         <button id="shownav" onclick="toggleSidebar()">Open Sidebar</button>
         <div> Deuxests </div>
+        <input type="text" id="searchInput" placeholder="search...">
         <button onclick="showPopup()" id="logout">logout
-            <span class="material-symbols-outlined">
+            <span class="material-icons" id="log-out">
                 logout
             </span>
         </button>
@@ -57,6 +63,24 @@
 
     <aside id="sidebar">
 
+        <a class="sidenav" id="sidenavtop" href="#achievement">
+            <span class="material-icons">emoji_events</span>
+            <p>Achievement</p>
+        </a>
+        <a class="sidenav" href="#progress">
+            <span class="material-icons">rotate_right</span>
+            <p>Progress</p>
+        </a>
+        <a class="sidenav">
+            <span class="material-icons">add_comment</span>
+            <p>Requests</p>
+        </a>
+        <a class="sidenav">
+            <span class="material-icons">phone</span>
+            <p>Contact</p>
+        </a>
+        
+        
         <div class="accinfo">
             <div>
                 <p id="userName"></p>
@@ -68,7 +92,86 @@
     </aside>
 
     <main>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perferendis voluptatem placeat, nulla eum inventore corrupti temporibus eius voluptatum excepturi. Fuga earum, ut dolorum, eos dolor ab alias hic voluptatibus, id molestiae distinctio saepe doloribus culpa? Dolorum fugit tenetur obcaecati, error provident reiciendis voluptates tempore, doloribus praesentium alias nulla hic excepturi animi commodi quam debitis cumque ex et consectetur. Nihil cumque voluptate ea officiis eos quidem vero molestiae consequuntur numquam iusto sunt doloremque, rerum exercitationem soluta, distinctio libero sapiente odio sit! Aut quae odit consequatur, quibusdam quidem maxime reiciendis quisquam praesentium totam deserunt esse molestias nobis tempore magnam laborum itaque voluptates.</p>
+
+        <h1 id="achievement">Achievement</h1>
+
+        <div class="achieved" >
+
+            <div id="ahcstuff">
+                <span class="material-icons">
+                    assignment
+                </span>
+                <h1>6</h1>
+                <p>Projects</p>
+                
+            </div>
+            <div id="ahcstuff">
+                <span class="material-icons">
+                    lightbulb
+                </span>
+                <h1>10+</h1>
+                <p>Skills</p>
+            </div>
+            <div id="ahcstuff">
+                <span class="material-icons">
+                    schedule
+                </span>
+                <h1>4Y</h1>
+                <p>Experience</p>
+            </div>
+            <div id="ahcstuff">
+                <span class="material-icons">
+                    groups
+                </span>
+                <h1>0</h1>
+                <p>Clients</p>
+            </div>
+
+        </div>
+
+        <h1 id="progress">Progress</h1>
+
+        <div class="progress">
+            Current Project Progress
+            <div class="probar">ㅤ</div>
+            <p>65% complete</p>
+        </div>
+        <div class="progress">
+            Current Requests Progress
+            <div class="reqbar">ㅤ</div>
+            <p>no requests yet</p>
+        </div>
+
+        <div class="recent">
+            <span>Recent Actifity</span>
+
+            <div class="history">
+                <span class="material-icons" id="check">check
+                </span>
+                <div>Task Completed
+                    <p>Fontend Dashboard Implementation</p>
+                    <p>1 hours ago</p>
+                </div>
+            </div>
+
+            <div class="history">
+                <span class="material-icons" id="check">check
+                </span>
+                <div>Task Completed
+                    <p>Auth API Implementation</p>
+                    <p>34 hours ago</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!--<div class="commentsection">
+            <input type="text" id="name" placeholder="Your Name" required>
+            <textarea id="comment" placeholder="Your Comment" required></textarea>
+            <button id="submitBtn">Post Comment</button>
+        </div>-->
+
+        <div class="comment-container" id="comments"></div>
     </main>
 
     <footer>Nothing to see here!</footer>

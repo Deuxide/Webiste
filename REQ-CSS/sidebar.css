@@ -1,0 +1,107 @@
+
+.sidenav {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    text-decoration: none;
+    background-color: #00000000;
+    outline: none;
+    border: none;
+    border-radius: 15px;
+
+    width: 80%;
+    padding: 0.7rem;
+    margin: 0.6rem 0 0 0;
+
+    overflow: hidden;
+}
+
+#sidenavtop {
+    margin-top: 2rem;
+}
+
+.sidenav::before {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    height: 64px;
+    width: 240px;
+    background: var(--colors);
+    opacity: 0.5;
+    transform: translateX(-240px) translateY(-11px);
+    transition: 0.5s;
+}
+
+.sidenav:hover::before {
+    transform: translateY(-11px) translateX(0px);
+}
+
+.sidenav:hover {
+    cursor: pointer;
+}
+
+.material-icons {
+    color: var(--colorp);
+}
+
+.sidenav p {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.accinfo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    width: 250px;
+    height: 85px;
+
+    background-color: var(--colors);
+    border-radius: 20px;
+
+    margin-top: auto;
+    margin-bottom: 2rem;
+}
+
+.accinfo div {
+    margin: 0;
+    flex-direction: column;
+    margin-right: 10px;
+}
+
+#userName {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+#userEmail {
+    width: 150px;
+    margin: 0;
+    font-weight: 500;
+    opacity: 0.3;
+    transition: 0.3s;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#userEmail:hover {
+    color: var(--colora);
+    opacity: 0.8;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#userProfilePicture {
+    width: 50px;
+    border-radius: 30px;
+    border-style: solid;
+    border-width: 2px;
+    border-color:  var(--colora);
+    padding: 2px;
+}

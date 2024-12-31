@@ -1,0 +1,105 @@
+#progress {
+    margin: 2rem auto 0.5rem 0;
+    font-size: 75px;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+.progress {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    padding: 1rem;
+    border-radius: 15px;
+
+    width: 100%;
+    height: 72px;
+    background-color: var(--colorb);
+
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.progress p {
+    font-size: 15px;
+}
+
+.probar {
+    margin: 7px 0 0 0;
+    height: 20px;
+    background: linear-gradient(to right, var(--colora), var(--colorp));
+    border-radius: 10px;
+    width: 65%; /*update progress */
+    transition: width 0.3s ease;
+}
+
+.progress p {
+    opacity: 0.45;
+    margin-top: 5px;
+    font-family: serif;
+}
+
+.reqbar {
+    margin: 7px 0 0 0;
+    height: 20px;
+    background: linear-gradient(to right, var(--colora), var(--colorp));
+    border-radius: 10px;
+    width: 0%; /*update progress */
+    transition: width 0.3s ease;
+}
+
+.recent {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+
+    background-color: var(--colorb);
+    padding: 1rem;
+    width: 100%;
+    border-radius: 15px;
+}
+
+.recent span {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.history {
+    display: flex;
+    flex-direction: row;
+    margin: 0 1rem 0 1rem;
+    padding-bottom: 10px;
+    width: 95%;
+    border-bottom: 1.5px solid #a7b0c033;
+}
+
+.history span {
+    font-size: 57px;
+
+    margin:  0 10px 0 0 ;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.history div {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5px;
+
+    margin: 0;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.history div p {
+    margin: 0;
+    font-weight: 400;
+    font-size: 13px;
+}
+
+#check {
+    color: #22c55e;
+}
