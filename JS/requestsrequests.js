@@ -57,7 +57,8 @@ submitBtn.addEventListener('click', function() {
             name: name,
             comment: comment,
             timestamp: timestamp, // Save the timestamp along with the comment
-            uid: currentUser.uid  // Save the user's UID
+            uid: currentUser.uid,  // Save the user's UID
+            email: currentUser.email  // Save the user's email address
         }).then(() => {
             nameInput.value = '';
             commentInput.value = '';
@@ -79,6 +80,10 @@ onChildAdded(commentsRef, (snapshot) => {
     const commentName = document.createElement('div');
     commentName.classList.add('comment-name');
     commentName.textContent = commentData.name;
+
+    const commentEmail = document.createElement('div'); // New element for email
+    commentEmail.classList.add('comment-email');
+    commentEmail.textContent = commentData.email; // Display the email
 
     const commentText = document.createElement('div');
     commentText.classList.add('the-request');
@@ -110,6 +115,7 @@ onChildAdded(commentsRef, (snapshot) => {
     }
 
     commentElement.appendChild(commentName);
+    commentElement.appendChild(commentEmail); // Add email element
     commentElement.appendChild(commentText);
     commentElement.appendChild(deleteButton);
 

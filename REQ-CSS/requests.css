@@ -163,7 +163,16 @@
     font-size: 25px;
     font-weight: 600;
     width: 100%;
+    margin: 0;
+    padding-left: 1px;
+}
+
+.comment-email {
+    margin: 0;
+    opacity: 0.15;
+    font-weight: 500;
     padding-bottom: 0.5rem;
+    padding-left: 1px;
 }
 
 .the-request {
@@ -180,22 +189,24 @@
     display: flex;
     flex-direction: row;
 
-    padding: 10px   ;
+    padding: 10px;
     font-size: 15px;
     font-weight: 700;
     margin: 10px 0 0 0;
 
     outline: none;
-    border: none;
+    border: 2px solid #ffffff09;
     border-radius: 10px;
-    background-color: #721919;
-    color: var(--colors);
+    background-color: var(--colorb);
+    color: #ffffff1c;
     transition: 0.3s;
     animation: gone 10s linear forwards;
 }
 
 .requests-container button:hover {
     transform: translateY(-3px);
+    color: #b11e1e;
+    border-color: #b11e1e;
     cursor: pointer;
 }
 
