@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="REQ-CSS/sidebar.css">
     <link rel="stylesheet" href="REQ-CSS/achieved.css">
     <link rel="stylesheet" href="REQ-CSS/progress.css">
+    <link rel="stylesheet" href="REQ-CSS/requests.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -74,7 +75,7 @@
             <span class="material-icons">rotate_right</span>
             <p>Progress</p>
         </a>
-        <a class="sidenav">
+        <a class="sidenav" href="#requests">
             <span class="material-icons">add_comment</span>
             <p>Requests</p>
         </a>
@@ -126,7 +127,7 @@
                 <span class="material-icons">
                     groups
                 </span>
-                <h1>0</h1>
+                <h1>38</h1>
                 <p>Clients</p>
             </div>
 
@@ -168,13 +169,36 @@
 
         </div>
 
-        <!--<div class="commentsection">
-            <input type="text" id="name" placeholder="Your Name" required>
-            <textarea id="comment" placeholder="Your Comment" required></textarea>
-            <button id="submitBtn">Post Comment</button>
-        </div>-->
+        <div id="requests">requests</div>
 
-        <div class="comment-container" id="comments"></div>
+        <div class="rcont">
+            <div class="requests">
+                <h2>your request</h2>
+                <p>what do you need to be done?</p>
+                <input type="text" id="name" placeholder="Your Name" required>
+                <textarea id="comment" placeholder="Your Request ( help me with this math problem )" required></textarea>
+                <button id="submitBtn">Submit test Request</button>
+            </div>
+
+            <h1>Welcome to deuxests
+                <p> you can ask requests like a question or to make something
+                    <br>
+                    <br> - if it is a problem, it must be about code / math    
+                    <br> - if it is a requsts to make something, it can be:
+                    <br> (making program, making games,
+                    <br> or making stuff in game(stormworks, minecraft))
+                    <br>
+                    <br> ! important !
+                    <br> - everyone can see your requests
+                    <br> (private requests coming soon)
+                    <br> - you can only delete your requests for 10 seconds
+                    <br> - its not free of course (5k - 100k Rp)
+                </p>
+            </h1>
+            
+        </div>
+
+        <div class="requests-container" id="comments"></div>
     </main>
 
     <footer>Nothing to see here!</footer>

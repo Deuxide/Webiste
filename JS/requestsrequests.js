@@ -60,16 +60,17 @@ onChildAdded(commentsRef, (snapshot) => {
     commentName.textContent = commentData.name;
 
     const commentText = document.createElement('div');
+    commentText.classList.add('the-request');
     commentText.textContent = commentData.comment;
 
     const deleteButton = document.createElement('button');
     deleteButton.classList.add('delete-btn');
-    deleteButton.textContent = 'Delete';
+    deleteButton.textContent = '';
 
     // Calculate the difference between current time and comment timestamp
     const timeElapsed = (Date.now() - commentData.timestamp) / 1000; // in seconds
 
-    if (timeElapsed <= 30) {
+    if (timeElapsed <= 10) {
         // Show delete button if 30 seconds haven't passed
         deleteButton.style.display = 'block';
 

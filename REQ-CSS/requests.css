@@ -1,0 +1,231 @@
+#requests {
+    margin: 4rem 0 0 0;
+    align-self: flex-start;
+    font-size: 5vw;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+@media(max-width: 800px) {
+    #requests {
+        font-size: 46px;
+    }
+}
+
+@media(max-width: 400px) {
+    #requests {
+        font-size: 32px;
+    }
+}
+
+.rcont {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    flex-wrap: wrap;
+
+    align-self: flex-start;
+}
+
+.rcont h1 {
+    margin: 3rem 0 0 1rem;
+    font-size: 55px;
+    font-weight: 400;
+    opacity: 0.1;
+}
+
+.rcont p {
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.rcont br {
+    margin: 0;
+}
+
+.requests {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+
+    width: 400px;
+    height: 400px;
+
+    background-color: var(--colorb);
+    padding: 1.75rem;
+    border-radius: 15px;
+    margin: 0 0 1rem 0;
+}
+
+.requests h2 {
+    margin: 0;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 50px;
+}
+
+.requests p {
+    margin: 0;
+    font-weight: 500;
+    opacity: 0.5;
+    font-size: 20px;
+}
+
+.requests input {
+    padding: 5px;
+    margin-bottom: 0;
+
+    width: 90%;
+    padding: 0.8rem;
+    border-radius: 10px;
+    background-color: var(--colorb);
+
+    outline: none;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #ffffff09;
+    transition: 0.3s;
+    font-weight: 600;
+    font-size: 1.25rem;
+}
+
+.requests textarea {
+    width: 90%;
+    height: 280px;
+    padding: 0.8rem;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    background-color: var(--colorb);
+    resize: none;
+
+    outline: none;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #ffffff09;
+    transition: 0.3s;
+    font-weight: 600;
+    font-size: 1.25rem;
+}
+
+.requests button {
+    width: 220px;
+    height: 30px;
+
+    background-color: var(--colora);
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    padding: 0.6rem 0.6rem 27px 0.6rem;
+
+    color: var(--colors);
+    font-size: 1.25rem;
+    text-transform: uppercase;
+    transition: 0.3s;
+}
+
+.requests button:hover {
+    transform: translateY(-4px);
+    cursor: pointer;
+}
+
+.requests input:hover, .requests textarea:hover {
+    border-color: var(--colora);
+}
+
+.requests-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 97.5%;
+    align-self: flex-start;
+}
+
+.comment {
+    width: 100%;
+    background-color: var(--colorb);
+    padding: 1rem;
+    border-radius: 15px;
+}
+
+.comment-name {
+    font-size: 25px;
+    font-weight: 600;
+    width: 100%;
+    padding-bottom: 0.5rem;
+}
+
+.the-request {
+    padding: 10px;
+    font-size: 18px;
+    font-weight: 500;
+    padding-bottom: 0.5rem;
+    border: 2px solid #ffffff09;
+    border-radius: 10px;
+}  
+
+.requests-container button {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+
+    padding: 15px 80px 15px 80px;
+    font-size: 15px;
+    font-weight: 700;
+    margin: 10px 0 0 0;
+
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    background-color: #721919;
+    color: var(--colors);
+    transition: 0.3s;
+    animation: gone 10s linear forwards;
+}
+
+.requests-container button:hover {
+    transform: translateY(-3px);
+    cursor: pointer;
+}
+
+.requests-container button::before {
+    content: "delete 10s";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--colors);
+    pointer-events: none;
+
+    animation: gone 10s linear forwards;
+}
+
+@keyframes gone {
+    0%{ content: "delete 10s"; }
+    10%{ content: "delete 9s"; }
+    20%{ content: "delete 8s"; }
+    30%{ content: "delete 7s"; }
+    40%{ content: "delete 6s"; }
+    50%{ content: "delete 5s"; }
+    60%{ content: "delete 4s"; }
+    70%{ content: "delete 3s"; }
+    80%{ content: "delete 2s"; }
+    90%{ content: "delete 1s"; }
+    100%{ content: "delete 0s"; display: none;}
+}
+
+@media(max-width: 520px) {
+    .rcont h1 {
+        margin: 0.5rem 0 0 0;
+        text-align: center;
+    }
+    .rcont p {
+        text-align: start;
+        margin-bottom: 1rem;
+    }
+    .requests {
+        width: 100%;
+    }
+}
