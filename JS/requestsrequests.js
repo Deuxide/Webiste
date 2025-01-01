@@ -1,5 +1,6 @@
 // Import Firebase functions (modular SDK)
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js';
+import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js';
 import { getDatabase, ref, set, onChildAdded, push, remove } from 'https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js';
 
 // Firebase configuration (replace with your own config from Firebase Console)
@@ -16,14 +17,21 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
 const database = getDatabase(app);
 
-// Generate or retrieve a unique client ID for the current device
-let clientId = localStorage.getItem('clientId');
-if (!clientId) {
-    clientId = crypto.randomUUID(); // Generate a new UUID
-    localStorage.setItem('clientId', clientId);
-}
+let currentUser = null;
+
+// Monitor auth state
+onAuthStateChanged(auth, (user) => {
+    if (user) {
+        currentUser = user;
+        console.log('Signed in as:', currentUser.displayName);
+    } else {
+        console.error('User is not signed in.');
+        window.location.href = "../login.html"; // Redirect to login page if not signed in
+    }
+});
 
 // DOM Elements
 const nameInput = document.getElementById('name');
@@ -33,10 +41,15 @@ const commentsContainer = document.getElementById('comments');
 
 // Post comment to Firebase
 submitBtn.addEventListener('click', function() {
-    const name = nameInput.value;
+    if (!currentUser) {
+        alert('You must be signed in to post a comment.');
+        return;
+    }
+
+    const name = nameInput.value || currentUser.displayName;
     const comment = commentInput.value;
 
-    if (name && comment) {
+    if (comment) {
         const newCommentRef = push(ref(database, 'comments'));
         const timestamp = Date.now();  // Get the current timestamp
 
@@ -44,7 +57,7 @@ submitBtn.addEventListener('click', function() {
             name: name,
             comment: comment,
             timestamp: timestamp, // Save the timestamp along with the comment
-            clientId: clientId    // Save the client ID
+            uid: currentUser.uid  // Save the user's UID
         }).then(() => {
             nameInput.value = '';
             commentInput.value = '';
@@ -75,8 +88,8 @@ onChildAdded(commentsRef, (snapshot) => {
     deleteButton.classList.add('delete-btn');
     deleteButton.textContent = 'Delete';
 
-    // Check if the current device matches the comment's clientId
-    if (commentData.clientId === clientId) {
+    // Check if the current user's UID matches the comment's UID
+    if (currentUser && commentData.uid === currentUser.uid) {
         deleteButton.style.display = 'block'; // Show delete button
 
         // Delete comment from Firebase and remove from DOM
