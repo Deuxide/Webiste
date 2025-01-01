@@ -217,18 +217,29 @@ onChildAdded(commentsRef, (snapshot) => {
     // Move button functionality
     moveButton.addEventListener('click', function () {
         const linkValue = linkInput.value;
-
+    
         if (!linkValue) {
             alert('Please enter a link before moving the comment.');
             return;
         }
-
+    
         const commentRef = ref(database, 'comments/' + commentKey);
+        const commentCountRef = ref(database, 'commentCount/' + commentData.uid);
+    
+        // Update the comment data and decrement the comment count
         set(commentRef, {
             ...commentData,
             moved: true,
             downloadLink: linkValue
         }).then(() => {
+            // Decrement the user's comment count
+            get(commentCountRef).then((snapshot) => {
+                const commentCount = snapshot.val() || 0;
+                if (commentCount > 0) {
+                    set(commentCountRef, commentCount - 1);
+                }
+            });
+    
             movedCommentsContainer.appendChild(commentElement);
             deleteButton.style.display = 'none'; // Hide delete button after moving
             moveButton.style.display = 'none';
@@ -237,8 +248,8 @@ onChildAdded(commentsRef, (snapshot) => {
         }).catch((error) => {
             console.error('Error updating move status:', error);
         });
-
-        setTimeout(function(){
+    
+        setTimeout(function () {
             location.reload();
         }, 200);
     });
@@ -246,15 +257,25 @@ onChildAdded(commentsRef, (snapshot) => {
     // Delete button functionality
     deleteButton.addEventListener('click', function () {
         const commentRef = ref(database, 'comments/' + commentKey);
-
-        // Remove the comment from Firebase
+        const commentCountRef = ref(database, 'commentCount/' + commentData.uid);
+    
+        // Remove the comment from Firebase and decrement the comment count
         remove(commentRef).then(() => {
+            // Decrement the user's comment count
+            get(commentCountRef).then((snapshot) => {
+                const commentCount = snapshot.val() || 0;
+                if (commentCount > 0) {
+                    set(commentCountRef, commentCount - 1);
+                }
+            });
+    
             commentElement.remove(); // Remove from DOM
             console.log('Comment deleted successfully');
         }).catch((error) => {
             console.error('Error deleting comment:', error);
         });
     });
+    
 
     commentElement.appendChild(commentName);
     commentElement.appendChild(commentEmail);
