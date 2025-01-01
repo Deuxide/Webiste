@@ -28,10 +28,10 @@
 }
 
 .rcont h1 {
-    margin: 2rem 0 0 1rem;
+    margin: 1rem 0 0 1rem;
     font-size: 55px;
     font-weight: 400;
-    opacity: 0.1;
+    color: #1c1f24;
 }
 
 .rcont p {
@@ -39,10 +39,36 @@
     padding: 0;
     font-size: 20px;
     font-weight: 500;
+    color: #1c1f24;
 }
 
 .rcont br {
     margin: 0;
+}
+
+.patron {
+    font-size: 30px;
+    font-weight: 800;
+    text-transform: uppercase;
+    text-decoration: none;
+
+    outline: none;
+    border: 2px solid #ffffff09;
+    color: #ffffff09;
+    border-radius: 10px;
+    background-color: var(--colors);
+
+    margin: 0;
+    padding: 0.5rem;
+
+    transition: 0.3s;
+}
+
+.patron:hover {
+    cursor: pointer;
+    transform: translateY(-3px) !important;
+    color: var(--colora);
+    border-color: var(--colora);
 }
 
 .requests {
@@ -138,6 +164,7 @@
 .requests button:hover {
     transform: translateY(-4px);
     cursor: pointer;
+    background-color: var(--colorp);
 }
 
 .requests input:hover, .requests textarea:hover {
@@ -243,6 +270,8 @@
     }
     .rcont p {
         text-align: start;
+    }
+    .patron {
         margin-bottom: 1rem;
     }
     .requests {
