@@ -28,7 +28,7 @@ copyTextElement.addEventListener('click', function() {
 
     // Use the Clipboard API to copy the text to clipboard
     navigator.clipboard.writeText(textToCopy).then(function() {
-        alert('Text copied to clipboard!');
+        alert('Email Address copied to clipboard!');
     }).catch(function(err) {
         console.error('Error copying text: ', err);
     });
