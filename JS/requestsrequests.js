@@ -286,3 +286,7 @@ onChildAdded(commentsRef, (snapshot) => {
 
     targetContainer.appendChild(commentElement);
 });
+
+document.getElementById('rldch').addEventListener('click', function(){
+    location.reload();
+});
