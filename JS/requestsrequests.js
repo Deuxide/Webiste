@@ -38,11 +38,10 @@ const nameInput = document.getElementById('name');
 const commentInput = document.getElementById('comment');
 const submitBtn = document.getElementById('submitBtn');
 const commentsContainer = document.getElementById('comments');
-const movedCommentsContainer = document.getElementById('moved-comments-container'); // New container for moved comments
-
+const movedCommentsContainer = document.getElementById('moved-comments-container');
 
 // Post comment to Firebase
-submitBtn.addEventListener('click', function() {
+submitBtn.addEventListener('click', function () {
     if (!currentUser) {
         alert('You must be signed in to post a comment.');
         return;
@@ -53,14 +52,14 @@ submitBtn.addEventListener('click', function() {
 
     if (comment) {
         const newCommentRef = push(ref(database, 'comments'));
-        const timestamp = Date.now();  // Get the current timestamp
+        const timestamp = Date.now();
 
         set(newCommentRef, {
             name: name,
             comment: comment,
-            timestamp: timestamp, // Save the timestamp along with the comment
-            uid: currentUser.uid,  // Save the user's UID
-            email: currentUser.email  // Save the user's email address
+            timestamp: timestamp,
+            uid: currentUser.uid,
+            email: currentUser.email
         }).then(() => {
             nameInput.value = '';
             commentInput.value = '';
@@ -71,22 +70,21 @@ submitBtn.addEventListener('click', function() {
 });
 
 // Display comments from Firebase
-// Display comments from Firebase
 const commentsRef = ref(database, 'comments');
 onChildAdded(commentsRef, (snapshot) => {
     const commentData = snapshot.val();
-    const commentKey = snapshot.key; // Get the unique key for each comment
+    const commentKey = snapshot.key;
     const commentElement = document.createElement('div');
     commentElement.classList.add('comment');
-    commentElement.setAttribute('data-key', commentKey); // Add the data-key for easy reference
+    commentElement.setAttribute('data-key', commentKey);
 
     const commentName = document.createElement('div');
     commentName.classList.add('comment-name');
     commentName.textContent = commentData.name;
 
-    const commentEmail = document.createElement('div'); // New element for email
+    const commentEmail = document.createElement('div');
     commentEmail.classList.add('comment-email');
-    commentEmail.textContent = commentData.email; // Display the email
+    commentEmail.textContent = commentData.email;
 
     const commentText = document.createElement('div');
     commentText.classList.add('the-request');
@@ -96,94 +94,132 @@ onChildAdded(commentsRef, (snapshot) => {
     deleteButton.classList.add('delete-btn');
     deleteButton.textContent = 'Delete';
 
-    const moveButton = document.createElement('button'); // New move button
+    const moveButton = document.createElement('button');
     moveButton.classList.add('move-btn');
     moveButton.textContent = 'Complete';
 
-    if (currentUser && commentData.uid === '0qqSwMKOO9ZSYsipmEV0T3ImbAb2') {
-        commentName.classList.add('owner-comment-name');
+    const linkInput = document.createElement('input');
+    linkInput.classList.add('link-input');
+    linkInput.type = 'text';
+    linkInput.placeholder = 'Enter download link';
+
+    const downloadButton = document.createElement('button');
+    downloadButton.classList.add('download-btn');
+    downloadButton.textContent = 'Download';
+
+    // Determine target container
+    const isMoved = commentData.moved || false;
+    const targetContainer = isMoved ? movedCommentsContainer : commentsContainer;
+
+    // owner tag and color for website owener
+    if (commentData.uid === '0qqSwMKOO9ZSYsipmEV0T3ImbAb2') {
         commentEmail.classList.add('owner-comment-email');
         commentEmail.textContent = commentData.email + ' - owner';
-    } else {
-        commentText.textContent = commentData.comment;
+        commentName.classList.add('owner-comment-name');
     }
 
-    // Check if the comment has been moved
-    const isMoved = commentData.moved || false;
-    const targetContainer = isMoved ? movedCommentsContainer : commentsContainer; // Use moved container if moved
-
-    // Check if the current user's UID matches the comment's UID
-    if (currentUser && commentData.uid === currentUser.uid) {
-        // Hide delete button if the comment is moved
-        if (isMoved === false) {
-            deleteButton.style.display = 'block'; // Show delete button only if the comment is not moved
-            moveButton.style.display = 'block';
-        } else {
-            deleteButton.style.display = 'none'; // Hide delete button if the comment is moved
-            moveButton.style.display = 'none';
-        }
-
-        // Delete comment from Firebase and remove from DOM
-        deleteButton.addEventListener('click', function() {
-            const commentRef = ref(database, 'comments/' + commentKey); // Get reference to the comment by its key
-
-            // Remove the comment from Firebase
-            remove(commentRef).then(() => {
-                // Find and remove the comment from the DOM immediately
-                commentElement.remove(); 
-                console.log('Comment deleted successfully');
-            }).catch((error) => {
-                console.error('Error deleting comment:', error);
-            });
-        });
-    } else {
-        deleteButton.style.display = 'none'; // Hide delete button if not the current user
-    }
-
-    if (isMoved === true) {
-        commentName.style.color = '#22c55e'
-        deleteButton.style.margin = '10px 0 1.5rem 0';
+    // Update UI for moved comments
+    if (isMoved) {
+        commentName.style.color = '#22c55e';
         commentElement.style.background = 'none';
         commentElement.style.borderBottom = '1.5px solid #a7b0c033';
         commentElement.style.borderRadius = '0';
+        linkInput.style.display = 'none'; // Hide input for moved comments
+        downloadButton.style.display = commentData.downloadLink ? 'block' : 'none'; // Show download button if link exists
+    } else {
+        downloadButton.style.display = 'none'; // Hide download button for unmoved comments
     }
 
-    if (currentUser && currentUser.uid === '0qqSwMKOO9ZSYsipmEV0T3ImbAb2') {
-        if(isMoved === false) {
-            moveButton.style.display = 'block';
-            moveButton.style.margin = '10px 0 1.5rem 0';
-            deleteButton.style.display = 'block'; // Show move button for the specific user
+    // Delete button visibility logic
+    if (currentUser && (commentData.uid === currentUser.uid || currentUser.uid === '0qqSwMKOO9ZSYsipmEV0T3ImbAb2')) {
+        if (currentUser.uid === '0qqSwMKOO9ZSYsipmEV0T3ImbAb2') {
+            deleteButton.style.display = 'block'; // Always show delete button for this unique UID
         } else {
-            deleteButton.style.display = 'block';
-            moveButton.style.display = 'none';
+            deleteButton.style.display = isMoved ? 'none' : 'block'; // Hide delete button for moved comments
+            deleteButton.style.margin = '10px 0 1rem 0';
         }
     } else {
-        moveButton.style.display = 'none'; // Hide move button for all other users
-        commentText.style.margin = '0 0 1.5rem 0';
+        deleteButton.style.display = 'none'; // Hide delete button for other users
+        commentText.style.margin = '0 0 1rem 0';
     }
-    // Move comment to new container and update moved status in Firebase
-    moveButton.addEventListener('click', function() {
-        // Update the 'moved' status in Firebase
+    // Move button visibility logic
+    if (currentUser && currentUser.uid === '0qqSwMKOO9ZSYsipmEV0T3ImbAb2' && !isMoved) {
+        moveButton.style.display = 'block';
+    } else {
+        moveButton.style.display = 'none';
+        linkInput.style.display = 'none';
+    }
+
+    // Download button visibility logic
+    if (currentUser && (commentData.uid === currentUser.uid || currentUser.uid === '0qqSwMKOO9ZSYsipmEV0T3ImbAb2')) {
+        if (isMoved === true) {
+            downloadButton.style.display = 'block'; // Show download button for the sender and unique uid
+        }
+    } else {
+        downloadButton.style.display = 'none'; // Hide download button for all other users
+    }
+
+    // Download button functionality
+    if (commentData.downloadLink) {
+        downloadButton.addEventListener('click', function () {
+            const anchor = document.createElement('a');
+            anchor.href = commentData.downloadLink;
+            anchor.download = 'download';
+            document.body.appendChild(anchor);
+            anchor.click();
+            document.body.removeChild(anchor);
+        });
+    }
+
+    // Move button functionality
+    moveButton.addEventListener('click', function () {
+        const linkValue = linkInput.value;
+
+        if (!linkValue) {
+            alert('Please enter a link before moving the comment.');
+            return;
+        }
+
         const commentRef = ref(database, 'comments/' + commentKey);
         set(commentRef, {
-            ...commentData, // Retain the existing comment data
-            moved: true      // Set the 'moved' flag to true
+            ...commentData,
+            moved: true,
+            downloadLink: linkValue
         }).then(() => {
-            // Move the comment to the moved-comments-container
             movedCommentsContainer.appendChild(commentElement);
-            // Disable delete button after moving the comment
-            deleteButton.style.display = 'none';
-            console.log('Comment moved and delete disabled');
+            deleteButton.style.display = 'none'; // Hide delete button after moving
+            moveButton.style.display = 'none';
+            linkInput.style.display = 'none';
+            downloadButton.style.display = 'block'; // Show the download button after moving
         }).catch((error) => {
             console.error('Error updating move status:', error);
+        });
+
+        setTimeout(function(){
+            location.reload();
+        }, 200);
+    });
+
+    // Delete button functionality
+    deleteButton.addEventListener('click', function () {
+        const commentRef = ref(database, 'comments/' + commentKey);
+
+        // Remove the comment from Firebase
+        remove(commentRef).then(() => {
+            commentElement.remove(); // Remove from DOM
+            console.log('Comment deleted successfully');
+        }).catch((error) => {
+            console.error('Error deleting comment:', error);
         });
     });
 
     commentElement.appendChild(commentName);
-    commentElement.appendChild(commentEmail); // Add email element
+    commentElement.appendChild(commentEmail);
     commentElement.appendChild(commentText);
     commentElement.appendChild(deleteButton);
-    commentElement.appendChild(moveButton); // Add the move button
+    commentElement.appendChild(moveButton);
+    commentElement.appendChild(linkInput);
+    commentElement.appendChild(downloadButton);
 
-    targetContainer.appendChild(commentElement); // Append to the correct container (original or moved)
+    targetContainer.appendChild(commentElement);
 });

@@ -29,15 +29,15 @@
     margin: 1rem 0 0 1rem;
     font-size: 55px;
     font-weight: 400;
-    color: #1c1f24;
+    color: #323841;
 }
 
 .rcont p {
     margin: 0;
     padding: 0;
-    font-size: 20px;
-    font-weight: 500;
-    color: #1c1f24;
+    font-size: 17px;
+    font-weight: 600;
+    color: #323841;
 }
 
 .rcont br {
@@ -51,8 +51,8 @@
     text-decoration: none;
 
     outline: none;
-    border: 2px solid #ffffff09;
-    color: #ffffff09;
+    border: 2px solid #323841;
+    color: #323841;
     border-radius: 10px;
     background-color: var(--colors);
 
@@ -273,6 +273,55 @@
     cursor: pointer;
 }
 
+.download-btn {
+    width: 10rem;
+    padding: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    margin: 10px 0 1rem 0;
+
+    outline: none;
+    border: 2px solid #ffffff09;
+    border-radius: 10px;
+    background-color: var(--colorb);
+    color: #ffffff1c;
+    transition: 0.3s;
+    animation: gone 10s linear forwards;
+}
+
+.download-btn:hover {
+    transform: translateY(-3px);
+    color: #31af46;
+    border-color: #31af46;
+    cursor: pointer;
+}
+
+.link-input {
+    margin: 1rem 0 1rem 0;
+    padding: 10px;
+    font-size: 18px;
+    font-weight: 500;
+    padding-bottom: 0.5rem;
+    background-color: var(--colorb);
+
+    outline: none;
+    border: 2px solid #ffffff09;
+    border-radius: 10px;
+
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+
+    transition: 0.3s;
+}
+
+.link-input:hover {
+    border-color: var(--colora);
+}
+
+.link-input::placeholder {
+    opacity: 0.3;
+}
 
 /*.requests-container button::before {
     content: "delete 10s";
@@ -314,4 +363,11 @@
     .requests {
         width: 100%;
     }
+}
+
+#prqs {
+    font-size: 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin: 0;
 }
