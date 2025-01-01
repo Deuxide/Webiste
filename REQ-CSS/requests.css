@@ -92,6 +92,10 @@
     font-size: 1.25rem;
 }
 
+.requests input::placeholder {
+    opacity: 0.3;
+}
+
 .requests textarea {
     width: 90%;
     height: 280px;
@@ -110,10 +114,15 @@
     font-size: 1.25rem;
 }
 
+.requests textarea::placeholder {
+    opacity: 0.3;
+}
+
 .requests button {
-    width: 220px;
+    width: 240px;
     height: 30px;
 
+    margin: 0;
     background-color: var(--colora);
     border-radius: 10px;
     outline: none;
