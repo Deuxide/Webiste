@@ -160,7 +160,7 @@
     transition: 0.3s;
 }
 
-.requests button:hover {
+#submitBtn:hover {
     transform: translateY(-4px);
     cursor: pointer;
     background-color: var(--colorp);
