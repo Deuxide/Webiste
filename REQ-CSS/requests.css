@@ -96,7 +96,8 @@
 .requests p {
     margin: 0;
     font-weight: 500;
-    opacity: 0.5;
+    color: var(--colorp);
+    opacity: 0.3;
     font-size: 20px;
 }
 
