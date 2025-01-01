@@ -18,6 +18,13 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
+// Generate or retrieve a unique client ID for the current device
+let clientId = localStorage.getItem('clientId');
+if (!clientId) {
+    clientId = crypto.randomUUID(); // Generate a new UUID
+    localStorage.setItem('clientId', clientId);
+}
+
 // DOM Elements
 const nameInput = document.getElementById('name');
 const commentInput = document.getElementById('comment');
@@ -36,7 +43,8 @@ submitBtn.addEventListener('click', function() {
         set(newCommentRef, {
             name: name,
             comment: comment,
-            timestamp: timestamp // Save the timestamp along with the comment
+            timestamp: timestamp, // Save the timestamp along with the comment
+            clientId: clientId    // Save the client ID
         }).then(() => {
             nameInput.value = '';
             commentInput.value = '';
@@ -65,14 +73,11 @@ onChildAdded(commentsRef, (snapshot) => {
 
     const deleteButton = document.createElement('button');
     deleteButton.classList.add('delete-btn');
-    deleteButton.textContent = '';
+    deleteButton.textContent = 'Delete';
 
-    // Calculate the difference between current time and comment timestamp
-    const timeElapsed = (Date.now() - commentData.timestamp) / 1000; // in seconds
-
-    if (timeElapsed <= 10) {
-        // Show delete button if 30 seconds haven't passed
-        deleteButton.style.display = 'block';
+    // Check if the current device matches the comment's clientId
+    if (commentData.clientId === clientId) {
+        deleteButton.style.display = 'block'; // Show delete button
 
         // Delete comment from Firebase and remove from DOM
         deleteButton.addEventListener('click', function() {
@@ -88,8 +93,7 @@ onChildAdded(commentsRef, (snapshot) => {
             });
         });
     } else {
-        // Hide the delete button after 30 seconds
-        deleteButton.style.display = 'none';
+        deleteButton.style.display = 'none'; // Hide delete button
     }
 
     commentElement.appendChild(commentName);
@@ -97,7 +101,4 @@ onChildAdded(commentsRef, (snapshot) => {
     commentElement.appendChild(deleteButton);
 
     commentsContainer.appendChild(commentElement);
-
-    // Check if the delete button is still visible
-
 });

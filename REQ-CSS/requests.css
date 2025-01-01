@@ -190,7 +190,7 @@
     cursor: pointer;
 }
 
-.requests-container button::before {
+/*.requests-container button::before {
     content: "delete 10s";
     position: absolute;
     left: 50%;
@@ -214,7 +214,7 @@
     80%{ content: "delete 2s"; }
     90%{ content: "delete 1s"; }
     100%{ content: "delete 0s"; display: none;}
-}
+}*/
 
 @media(max-width: 520px) {
     .rcont h1 {
