@@ -210,6 +210,9 @@
     padding-bottom: 0.5rem;
     border: 2px solid #ffffff09;
     border-radius: 10px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
 }  
 
 .requests-container button {
