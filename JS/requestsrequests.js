@@ -109,8 +109,6 @@ submitBtn.addEventListener('click', function () {
         }
     }
 });
-
-
 // Display comments from Firebase
 const commentsRef = ref(database, 'comments');
 onChildAdded(commentsRef, (snapshot) => {
@@ -245,20 +243,21 @@ onChildAdded(commentsRef, (snapshot) => {
             moveButton.style.display = 'none';
             linkInput.style.display = 'none';
             downloadButton.style.display = 'block'; // Show the download button after moving
+    
+            // Reload the page after the comment is moved
+            setTimeout(function () {
+                location.reload();
+            }, 500);
         }).catch((error) => {
             console.error('Error updating move status:', error);
         });
-    
-        setTimeout(function () {
-            location.reload();
-        }, 200);
     });
 
     // Delete button functionality
     deleteButton.addEventListener('click', function () {
         const commentRef = ref(database, 'comments/' + commentKey);
         const commentCountRef = ref(database, 'commentCount/' + commentData.uid);
-    
+
         // Remove the comment from Firebase and decrement the comment count
         remove(commentRef).then(() => {
             // Decrement the user's comment count
@@ -268,14 +267,14 @@ onChildAdded(commentsRef, (snapshot) => {
                     set(commentCountRef, commentCount - 1);
                 }
             });
-    
+
             commentElement.remove(); // Remove from DOM
             console.log('Comment deleted successfully');
         }).catch((error) => {
             console.error('Error deleting comment:', error);
         });
     });
-    
+
 
     commentElement.appendChild(commentName);
     commentElement.appendChild(commentEmail);
