@@ -83,7 +83,7 @@ onChildAdded(commentsRef, (snapshot) => {
 
     const commentEmail = document.createElement('div'); // New element for email
     commentEmail.classList.add('comment-email');
-    commentEmail.textContent = commentData.email; // Display the email
+    commentEmail.textContent = commentData.email + ' - website owner'; // Display the email
 
     const commentText = document.createElement('div');
     commentText.classList.add('the-request');
