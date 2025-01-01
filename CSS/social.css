@@ -46,11 +46,12 @@
     width: 150px;
     height: 185px;
     text-transform: uppercase;
+    text-decoration: none;
     transition: 0.3s ;
 
 }
 
-.socialcard p, img {
+.socialcard p, i {
 
     transition: 0.3s;
 
@@ -69,12 +70,13 @@
     color: var(--colora);
 }
 
-.socialcard a:hover img {
-    width: 80px;
+.socialcard a:hover i {
+    color: var(--colora);
 }
 
-.socialcard img {
+.socialcard i {
 
-    width: 75px;
+    font-size: 65px;
+    margin: 0 0 0.5rem 0;
 
 }
