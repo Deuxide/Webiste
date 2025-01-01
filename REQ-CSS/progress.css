@@ -79,44 +79,6 @@
     font-weight: 700;
 }
 
-.history {
-    display: flex;
-    flex-direction: row;
-    margin: 0 1rem 0 1rem;
-    padding-bottom: 10px;
-    width: 95%;
-    border-bottom: 1.5px solid #a7b0c033;
-}
-
-.history span {
-    font-size: 57px;
-
-    margin:  0 10px 0 0 ;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.history div {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5px;
-
-    margin: 0;
-    font-size: 15px;
-    font-weight: 700;
-}
-
-.history div p {
-    margin: 0;
-    font-weight: 400;
-    font-size: 13px;
-}
-
-#check {
-    color: #22c55e;
-}
-
 @media(max-width: 330px) {
     .progress {
         font-size: 15px;

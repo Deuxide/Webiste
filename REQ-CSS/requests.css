@@ -195,12 +195,21 @@
     padding-left: 1px;
 }
 
+.owner-comment-name {
+    color: var(--colora);
+}
+
 .comment-email {
-    margin: 0;
+    margin: 0;  
     opacity: 0.15;
     font-weight: 500;
     padding-bottom: 0.5rem;
     padding-left: 1px;
+}
+
+.owner-comment-email {
+    color: var(--colora);
+    opacity: 0.3;
 }
 
 .the-request {
@@ -215,7 +224,7 @@
     white-space: normal;
 }  
 
-.requests-container button {
+.delete-btn {
     position: relative;
     display: flex;
     flex-direction: row;
@@ -234,12 +243,39 @@
     animation: gone 10s linear forwards;
 }
 
-.requests-container button:hover {
+.delete-btn:hover {
     transform: translateY(-3px);
     color: #b11e1e;
     border-color: #b11e1e;
     cursor: pointer;
 }
+
+.move-btn {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+
+    padding: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    margin: 10px 0 0 0;
+
+    outline: none;
+    border: 2px solid #ffffff09;
+    border-radius: 10px;
+    background-color: var(--colorb);
+    color: #ffffff1c;
+    transition: 0.3s;
+    animation: gone 10s linear forwards;
+}
+
+.move-btn:hover {
+    transform: translateY(-3px);
+    color: #31af46;
+    border-color: #31af46;
+    cursor: pointer;
+}
+
 
 /*.requests-container button::before {
     content: "delete 10s";

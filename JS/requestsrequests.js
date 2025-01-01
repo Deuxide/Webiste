@@ -38,6 +38,8 @@ const nameInput = document.getElementById('name');
 const commentInput = document.getElementById('comment');
 const submitBtn = document.getElementById('submitBtn');
 const commentsContainer = document.getElementById('comments');
+const movedCommentsContainer = document.getElementById('moved-comments-container'); // New container for moved comments
+
 
 // Post comment to Firebase
 submitBtn.addEventListener('click', function() {
@@ -69,6 +71,7 @@ submitBtn.addEventListener('click', function() {
 });
 
 // Display comments from Firebase
+// Display comments from Firebase
 const commentsRef = ref(database, 'comments');
 onChildAdded(commentsRef, (snapshot) => {
     const commentData = snapshot.val();
@@ -93,9 +96,32 @@ onChildAdded(commentsRef, (snapshot) => {
     deleteButton.classList.add('delete-btn');
     deleteButton.textContent = 'Delete';
 
+    const moveButton = document.createElement('button'); // New move button
+    moveButton.classList.add('move-btn');
+    moveButton.textContent = 'Complete';
+
+    if (currentUser && commentData.uid === '0qqSwMKOO9ZSYsipmEV0T3ImbAb2') {
+        commentName.classList.add('owner-comment-name');
+        commentEmail.classList.add('owner-comment-email');
+        commentEmail.textContent = commentData.email + ' - owner';
+    } else {
+        commentText.textContent = commentData.comment;
+    }
+
+    // Check if the comment has been moved
+    const isMoved = commentData.moved || false;
+    const targetContainer = isMoved ? movedCommentsContainer : commentsContainer; // Use moved container if moved
+
     // Check if the current user's UID matches the comment's UID
     if (currentUser && commentData.uid === currentUser.uid) {
-        deleteButton.style.display = 'block'; // Show delete button
+        // Hide delete button if the comment is moved
+        if (isMoved === false) {
+            deleteButton.style.display = 'block'; // Show delete button only if the comment is not moved
+            moveButton.style.display = 'block';
+        } else {
+            deleteButton.style.display = 'none'; // Hide delete button if the comment is moved
+            moveButton.style.display = 'none';
+        }
 
         // Delete comment from Firebase and remove from DOM
         deleteButton.addEventListener('click', function() {
@@ -111,13 +137,54 @@ onChildAdded(commentsRef, (snapshot) => {
             });
         });
     } else {
-        deleteButton.style.display = 'none'; // Hide delete button
+        deleteButton.style.display = 'none'; // Hide delete button if not the current user
     }
+
+    if (isMoved === true) {
+        commentName.style.color = '#22c55e'
+        commentText.style.width = '90%';
+        deleteButton.style.margin = '10px 0 1.5rem 0';
+        commentElement.style.width = '90%';
+        commentElement.style.background = 'none';
+        commentElement.style.borderBottom = '1.5px solid #a7b0c033';
+        commentElement.style.borderRadius = '0';
+    }
+
+    if (currentUser && currentUser.uid === '0qqSwMKOO9ZSYsipmEV0T3ImbAb2') {
+        if(isMoved === false) {
+            moveButton.style.display = 'block';
+            deleteButton.style.display = 'block'; // Show move button for the specific user
+        } else {
+            deleteButton.style.display = 'block';
+            moveButton.style.display = 'none';
+        }
+    } else {
+        moveButton.style.display = 'none'; // Hide move button for all other users
+        commentText.style.margin = '0 0 1.5rem 0';
+    }
+    // Move comment to new container and update moved status in Firebase
+    moveButton.addEventListener('click', function() {
+        // Update the 'moved' status in Firebase
+        const commentRef = ref(database, 'comments/' + commentKey);
+        set(commentRef, {
+            ...commentData, // Retain the existing comment data
+            moved: true      // Set the 'moved' flag to true
+        }).then(() => {
+            // Move the comment to the moved-comments-container
+            movedCommentsContainer.appendChild(commentElement);
+            // Disable delete button after moving the comment
+            deleteButton.style.display = 'none';
+            console.log('Comment moved and delete disabled');
+        }).catch((error) => {
+            console.error('Error updating move status:', error);
+        });
+    });
 
     commentElement.appendChild(commentName);
     commentElement.appendChild(commentEmail); // Add email element
     commentElement.appendChild(commentText);
     commentElement.appendChild(deleteButton);
+    commentElement.appendChild(moveButton); // Add the move button
 
-    commentsContainer.appendChild(commentElement);
+    targetContainer.appendChild(commentElement); // Append to the correct container (original or moved)
 });
