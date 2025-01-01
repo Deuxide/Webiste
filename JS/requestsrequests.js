@@ -1,7 +1,7 @@
 // Import Firebase functions (modular SDK)
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js';
 import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js';
-import { getDatabase, ref, set, onChildAdded, push, remove } from 'https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js';
+import { getDatabase, ref, set, onChildAdded, push, remove, query, orderByChild, equalTo, get } from 'https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js';
 
 // Firebase configuration (replace with your own config from Firebase Console)
 const firebaseConfig = {
@@ -50,24 +50,66 @@ submitBtn.addEventListener('click', function () {
     const name = nameInput.value || currentUser.displayName;
     const comment = commentInput.value;
 
-    if (comment) {
-        const newCommentRef = push(ref(database, 'comments'));
-        const timestamp = Date.now();
+    // Check if the user is allowed to post (limit only applies to non-owner users)
+    if (currentUser.uid !== '0qqSwMKOO9ZSYsipmEV0T3ImbAb2') {
+        const commentCountRef = ref(database, 'commentCount/' + currentUser.uid);
+        get(commentCountRef).then((snapshot) => {
+            const commentCount = snapshot.val() || 0;
+            
+            // Apply comment limit of 5 for non-owner users
+            if (commentCount >= 2) {
+                alert('You have reached your requests limit.');
+                return;
+            }
 
-        set(newCommentRef, {
-            name: name,
-            comment: comment,
-            timestamp: timestamp,
-            uid: currentUser.uid,
-            email: currentUser.email
-        }).then(() => {
-            nameInput.value = '';
-            commentInput.value = '';
+            // If comment is provided, save it
+            if (comment) {
+                const newCommentRef = push(ref(database, 'comments'));
+                const timestamp = Date.now();
+
+                set(newCommentRef, {
+                    name: name,
+                    comment: comment,
+                    timestamp: timestamp,
+                    uid: currentUser.uid,
+                    email: currentUser.email
+                }).then(() => {
+                    // Increment the user's comment count
+                    set(ref(database, 'commentCount/' + currentUser.uid), commentCount + 1);
+                    
+                    // Clear input fields
+                    nameInput.value = '';
+                    commentInput.value = '';
+                }).catch((error) => {
+                    console.error('Error posting comment:', error);
+                });
+            }
         }).catch((error) => {
-            console.error('Error posting comment:', error);
+            console.error('Error fetching comment count:', error);
         });
+    } else {
+        // For the user with uid '0qqSwMKOO9ZSYsipmEV0T3ImbAb2', allow unlimited comments
+        if (comment) {
+            const newCommentRef = push(ref(database, 'comments'));
+            const timestamp = Date.now();
+
+            set(newCommentRef, {
+                name: name,
+                comment: comment,
+                timestamp: timestamp,
+                uid: currentUser.uid,
+                email: currentUser.email
+            }).then(() => {
+                // Clear input fields
+                nameInput.value = '';
+                commentInput.value = '';
+            }).catch((error) => {
+                console.error('Error posting comment:', error);
+            });
+        }
     }
 });
+
 
 // Display comments from Firebase
 const commentsRef = ref(database, 'comments');
@@ -111,7 +153,7 @@ onChildAdded(commentsRef, (snapshot) => {
     const isMoved = commentData.moved || false;
     const targetContainer = isMoved ? movedCommentsContainer : commentsContainer;
 
-    // owner tag and color for website owener
+    // owner tag and color for website owner
     if (commentData.uid === '0qqSwMKOO9ZSYsipmEV0T3ImbAb2') {
         commentEmail.classList.add('owner-comment-email');
         commentEmail.textContent = commentData.email + ' - owner';
@@ -142,6 +184,7 @@ onChildAdded(commentsRef, (snapshot) => {
         deleteButton.style.display = 'none'; // Hide delete button for other users
         commentText.style.margin = '0 0 1rem 0';
     }
+
     // Move button visibility logic
     if (currentUser && currentUser.uid === '0qqSwMKOO9ZSYsipmEV0T3ImbAb2' && !isMoved) {
         moveButton.style.display = 'block';

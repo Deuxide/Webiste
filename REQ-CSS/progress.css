@@ -36,21 +36,28 @@
 
 .progress p {
     font-size: 15px;
+    opacity: 0.45;
+    margin-top: 5px;
+    font-family: serif;
 }
 
 .probar {
     margin: 7px 0 0 0;
     height: 20px;
-    background: linear-gradient(to right, var(--colora), var(--colorp));
+    background: linear-gradient(to right, var(--colora), var(--colorp), var(--colora));
     border-radius: 10px;
-    width: 65%; /*update progress */
-    transition: width 0.3s ease;
+    width: 75%; /*update progress */
+    transition: width 1s ease-in-out;
+    animation: placeHolderShimmer 3s linear infinite forwards;
 }
 
-.progress p {
-    opacity: 0.45;
-    margin-top: 5px;
-    font-family: serif;
+@keyframes placeHolderShimmer {
+    0% {
+      background-position: -30vw 0
+    }
+    100% {
+      background-position: 26vw 0
+    }
 }
 
 .reqbar {
