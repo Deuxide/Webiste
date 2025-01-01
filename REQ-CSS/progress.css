@@ -63,15 +63,20 @@
 }
 
 .recent {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
-
     background-color: var(--colorb);
     padding: 1rem;
     width: 100%;
     border-radius: 15px;
+}
+
+.reqtory {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 1rem;
+    flex-wrap: wrap;
+
+    width: 100%;
 }
 
 .recent span {

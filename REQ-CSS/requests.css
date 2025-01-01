@@ -23,8 +23,6 @@
     flex-direction: row;
     align-items: flex-start;
     flex-wrap: wrap;
-
-    align-self: flex-start;
 }
 
 .rcont h1 {
@@ -175,16 +173,20 @@
 .requests-container {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    width: 97.5%;
-    align-self: flex-start;
+    align-items: flex-start;
+    gap: 1rem;
+    flex-wrap: wrap;
+
+    background-color: var(--colorb);
+    padding: 1rem;
+    width: 100%;
+    border-radius: 15px;
 }
 
 .comment {
     width: 100%;
     background-color: var(--colorb);
-    padding: 1rem;
-    border-radius: 15px;
+    border-bottom: 1.5px solid #a7b0c033;
 }
 
 .comment-name {
@@ -225,10 +227,8 @@
 }  
 
 .delete-btn {
-    position: relative;
-    display: flex;
-    flex-direction: row;
 
+    width: 10rem;
     padding: 10px;
     font-size: 15px;
     font-weight: 700;
@@ -251,10 +251,7 @@
 }
 
 .move-btn {
-    position: relative;
-    display: flex;
-    flex-direction: row;
-
+    width: 10rem;
     padding: 10px;
     font-size: 15px;
     font-weight: 700;

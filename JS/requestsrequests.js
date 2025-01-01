@@ -142,9 +142,7 @@ onChildAdded(commentsRef, (snapshot) => {
 
     if (isMoved === true) {
         commentName.style.color = '#22c55e'
-        commentText.style.width = '90%';
         deleteButton.style.margin = '10px 0 1.5rem 0';
-        commentElement.style.width = '90%';
         commentElement.style.background = 'none';
         commentElement.style.borderBottom = '1.5px solid #a7b0c033';
         commentElement.style.borderRadius = '0';
@@ -153,6 +151,7 @@ onChildAdded(commentsRef, (snapshot) => {
     if (currentUser && currentUser.uid === '0qqSwMKOO9ZSYsipmEV0T3ImbAb2') {
         if(isMoved === false) {
             moveButton.style.display = 'block';
+            moveButton.style.margin = '10px 0 1.5rem 0';
             deleteButton.style.display = 'block'; // Show move button for the specific user
         } else {
             deleteButton.style.display = 'block';
