@@ -158,6 +158,13 @@ onChildAdded(commentsRef, (snapshot) => {
         commentName.classList.add('owner-comment-name');
     }
 
+    // helper tag and color for helper
+    if (commentData.uid === 'R5v8i4W2srOf4JSx6V6J0W7jk9w2') {
+        commentEmail.classList.add('admin-comment-email');
+        commentEmail.textContent = commentData.email + ' - admin';
+        commentName.classList.add('admin-comment-name');
+    }
+
     // Update UI for moved comments
     if (isMoved) {
         commentName.style.color = '#22c55e';
@@ -171,7 +178,7 @@ onChildAdded(commentsRef, (snapshot) => {
     }
 
     // Delete button visibility logic
-    if (currentUser && (commentData.uid === currentUser.uid || currentUser.uid === '0qqSwMKOO9ZSYsipmEV0T3ImbAb2')) {
+    if (currentUser && (commentData.uid === currentUser.uid || currentUser.uid === '0qqSwMKOO9ZSYsipmEV0T3ImbAb2' || 'R5v8i4W2srOf4JSx6V6J0W7jk9w2')) {
         if (currentUser.uid === '0qqSwMKOO9ZSYsipmEV0T3ImbAb2') {
             deleteButton.style.display = 'block'; // Always show delete button for this unique UID
         } else {
@@ -184,7 +191,7 @@ onChildAdded(commentsRef, (snapshot) => {
     }
 
     // Move button visibility logic
-    if (currentUser && currentUser.uid === '0qqSwMKOO9ZSYsipmEV0T3ImbAb2' && !isMoved) {
+    if (currentUser && currentUser.uid === '0qqSwMKOO9ZSYsipmEV0T3ImbAb2' || 'R5v8i4W2srOf4JSx6V6J0W7jk9w2' && !isMoved) {
         moveButton.style.display = 'block';
     } else {
         moveButton.style.display = 'none';
@@ -192,7 +199,7 @@ onChildAdded(commentsRef, (snapshot) => {
     }
 
     // Download button visibility logic
-    if (currentUser && (commentData.uid === currentUser.uid || currentUser.uid === '0qqSwMKOO9ZSYsipmEV0T3ImbAb2')) {
+    if (currentUser && (commentData.uid === currentUser.uid || currentUser.uid === '0qqSwMKOO9ZSYsipmEV0T3ImbAb2' || 'R5v8i4W2srOf4JSx6V6J0W7jk9w2')) {
         if (isMoved === true) {
             downloadButton.style.display = 'block'; // Show download button for the sender and unique uid
         }
