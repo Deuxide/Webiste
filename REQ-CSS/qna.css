@@ -1,0 +1,20 @@
+
+#qna {
+    margin: 0;
+    align-self: flex-start;
+    font-size: 5vw;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+@media(max-width: 800px) {
+    #qna {
+        font-size: 46px;
+    }
+}
+
+@media(max-width: 400px) {
+    #qna {
+        font-size: 32px;
+    }
+}
