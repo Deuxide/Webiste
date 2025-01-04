@@ -282,6 +282,12 @@ onChildAdded(commentsRef, (snapshot) => {
         downloadButton.style.display = 'none'; // Hide download button for all other users
     }
 
+    if (currentUser && currentUser.uid === 'R5v8i4W2srOf4JSx6V6J0W7jk9w2') {
+        if (isMoved === true) {
+            downloadButton.style.display = 'block';
+        }
+    } 
+
     commentElement.appendChild(commentName);
     commentElement.appendChild(commentEmail);
     commentElement.appendChild(commentText);
