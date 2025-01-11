@@ -191,7 +191,7 @@ onChildAdded(commentsRef, (snapshot) => {
     }
 
     // Move button visibility logic
-    if (currentUser && currentUser.uid === '0qqSwMKOO9ZSYsipmEV0T3ImbAb2' || 'R5v8i4W2srOf4JSx6V6J0W7jk9w2' && !isMoved) {
+    if (currentUser && currentUser.uid === '0qqSwMKOO9ZSYsipmEV0T3ImbAb2' && !isMoved) {
         moveButton.style.display = 'block';
     } else {
         moveButton.style.display = 'none';
